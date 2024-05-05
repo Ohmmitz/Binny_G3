@@ -9,7 +9,18 @@ class RewardPage extends StatefulWidget {
 
 class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  int _selectedIndex = 0;
 
+    void _onItemTapped(int index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+      
+      // Navigate to RewardPage when the corresponding bottom nav item is tapped
+      if (_selectedIndex == 0) {
+        Navigator.pushNamed(context, '/');
+      }
+    }
   @override
   void initState() {
     super.initState();

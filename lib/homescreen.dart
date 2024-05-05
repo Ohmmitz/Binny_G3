@@ -1,8 +1,14 @@
+import 'package:binny_project_g3/Reward.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
-class HomePage extends StatelessWidget {
+class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -607,3 +613,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
