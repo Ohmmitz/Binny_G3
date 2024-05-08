@@ -1,4 +1,7 @@
 import 'package:binny_project_g3/Reward.dart';
+import 'package:binny_project_g3/page_one.dart';
+import 'package:binny_project_g3/sold.dart';
+import 'package:binny_project_g3/trash.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
@@ -50,65 +53,115 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Column(
                   children: [
-                    Image.asset(
-                      'assets/bag.png',
-                      height: 30,
-                      // Add other properties as needed
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the page for "ติดต่อขายขยะ"
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Soldpage()),
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/bag.png',
+                            height: 30,
+                            // Add other properties as needed
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'ติดต่อขายขยะ',
+                            style: TextStyle(
+                              fontFamily: 'MyBinnyFont',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    SizedBox(height: 8),
-                    Text('ติดต่อขายขยะ' ,style: TextStyle(
-                      fontFamily: 'MyBinnyFont',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the page for "ถามตอบ"
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PageOne()),
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/board.png',
+                            height: 30,
+                            // Add other properties as needed
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'ถามตอบ',
+                            style: TextStyle(
+                              fontFamily: 'MyBinnyFont',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the page for "ถามตอบ"
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TrashPage()),
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/tree.png',
+                            height: 30,
+                            // Add other properties as needed
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'คู่มือแยกขยะ',
+                            style: TextStyle(
+                              fontFamily: 'MyBinnyFont',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Soldpage()),
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/love.png',
+                            height: 30,
+                            // Add other properties as needed
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'บริจาคขยะ',
+                            style: TextStyle(
+                              fontFamily: 'MyBinnyFont',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
-                ),
-                Column(
-                  children: [
-                    Image.asset(
-                      'assets/board.png',
-                      height: 30,
-                      // Add other properties as needed
-                    ),
-                    SizedBox(height: 8),
-                    Text('ถามตอบ',style: TextStyle(
-                      fontFamily: 'MyBinnyFont',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Image.asset(
-                      'assets/tree.png',
-                      height: 30,
-                      // Add other properties as needed
-                    ),
-                    SizedBox(height: 8),
-                    Text('คู่มือแยกขยะ',style: TextStyle(
-                      fontFamily: 'MyBinnyFont',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Image.asset(
-                      'assets/love.png',
-                      height: 30,
-                      // Add other properties as needed
-                    ),
-                    SizedBox(height: 8),
-                    Text('บริจาคขยะ',style: TextStyle(
-                      fontFamily: 'MyBinnyFont',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),),
-                  ],
-                ),
+                )
               ],
             ),
             SizedBox(height: 10),
