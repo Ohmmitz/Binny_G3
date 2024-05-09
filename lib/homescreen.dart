@@ -1,6 +1,10 @@
 import 'package:binny_project_g3/Reward.dart';
+import 'package:binny_project_g3/comunity.dart';
+import 'package:binny_project_g3/mygarden.dart';
 import 'package:binny_project_g3/page_one.dart';
+import 'package:binny_project_g3/page_three.dart';
 import 'package:binny_project_g3/sold.dart';
+import 'package:binny_project_g3/soldtash.dart';
 import 'package:binny_project_g3/trash.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
@@ -49,121 +53,115 @@ class _HomePageState extends State<HomePage> {
           children: [
             SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        // Navigate to the page for "ติดต่อขายขยะ"
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Soldpage()),
-                        );
-                      },
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/bag.png',
-                            height: 30,
-                            // Add other properties as needed
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Soldpage()),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/bag.png',
+                          height: 30,
+                          // Add other properties as needed
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'ติดต่อขายขยะ',
+                          style: TextStyle(
+                            fontFamily: 'MyBinnyFont',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
                           ),
-                          SizedBox(height: 8),
-                          Text(
-                            'ติดต่อขายขยะ',
-                            style: TextStyle(
-                              fontFamily: 'MyBinnyFont',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        // Navigate to the page for "ถามตอบ"
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PageOne()),
-                        );
-                      },
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/board.png',
-                            height: 30,
-                            // Add other properties as needed
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PageOne()),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/board.png',
+                          height: 30,
+                          // Add other properties as needed
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'ถามตอบ',
+                          style: TextStyle(
+                            fontFamily: 'MyBinnyFont',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
                           ),
-                          SizedBox(height: 8),
-                          Text(
-                            'ถามตอบ',
-                            style: TextStyle(
-                              fontFamily: 'MyBinnyFont',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        // Navigate to the page for "ถามตอบ"
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TrashPage()),
-                        );
-                      },
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/tree.png',
-                            height: 30,
-                            // Add other properties as needed
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => TrashPage()),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/tree.png',
+                          height: 30,
+                          // Add other properties as needed
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'คู่มือแยกขยะ',
+                          style: TextStyle(
+                            fontFamily: 'MyBinnyFont',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
                           ),
-                          SizedBox(height: 8),
-                          Text(
-                            'คู่มือแยกขยะ',
-                            style: TextStyle(
-                              fontFamily: 'MyBinnyFont',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Soldpage()),
-                        );
-                      },
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/love.png',
-                            height: 30,
-                            // Add other properties as needed
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Soldtash()),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/love.png',
+                          height: 30,
+                          // Add other properties as needed
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'บริจาคขยะ',
+                          style: TextStyle(
+                            fontFamily: 'MyBinnyFont',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
                           ),
-                          SizedBox(height: 8),
-                          Text(
-                            'บริจาคขยะ',
-                            style: TextStyle(
-                              fontFamily: 'MyBinnyFont',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                )
-              ],
-            ),
+                  ),
+                ],
+              ),
+
             SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.all(8.0), // Adjust the padding values as needed
@@ -254,26 +252,43 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Card(
-                  child: Container(
-                    width: 191,
-                    height: 155,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/Card1.jpg"),
-                        fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CommunityPage()),
+                    );
+                  },
+                  child: Card(
+                    child: Container(
+                      width: 191,
+                      height: 155,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/Card1.jpg"),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                Card(
-                  child: Container(
-                    width: 138,
-                    height: 155,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/Card2.jpg"),
-                        fit: BoxFit.cover,
+
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Garden()),
+                    );
+                  },
+                  child: Card(
+                    child: Container(
+                      width: 138,
+                      height: 155,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/Card2.jpg"),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -281,13 +296,21 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             SizedBox(height: 10),
-            Card(
-              child: Container(
-                height: 195,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/Card3.png"),
-                    fit: BoxFit.cover,
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context) => TrashPage()),
+                );
+              },
+              child: Card(
+                child: Container(
+                  height: 195,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/Card3.png"),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
@@ -317,7 +340,14 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 children: [
                   //1//
-                  Card(
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(builder: (context) => PageThree()),
+                      );
+                    },
+                    child :Card(
                     color: Colors.black,
                     child: Padding(
                       padding: EdgeInsets.all(16.0), // Adjust the padding values as needed
@@ -384,6 +414,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
+                  ),
                   ),
                   //2//
                   Card(

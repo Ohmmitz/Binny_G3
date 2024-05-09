@@ -341,7 +341,7 @@ class _TrashPageState extends State<TrashPage> {
 
   void _getImageFromGallery() async {
     final picker = ImagePicker();
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       setState(() {

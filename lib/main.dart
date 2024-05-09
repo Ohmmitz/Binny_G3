@@ -3,7 +3,7 @@ import 'homescreen.dart';
 import 'Reward.dart'; // Assuming RewardPage is defined in Reward.dart
 
 void main() {
-  runApp(MyApp());
+  runApp(HomePage());
 }
 
 class MyApp extends StatelessWidget {
