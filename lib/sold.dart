@@ -3,35 +3,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'locationshop.dart';
 import 'ShopDetailPage1.dart';
 
-void main() {
-  runApp(Soldpage());
+
+class Soldpage extends StatefulWidget {
+  State<Soldpage> createState() => _SoldpageState();
 }
 
-class Soldpage extends StatelessWidget {
-  const Soldpage({Key? key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "My App",
-      home: MyHomePage(),
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.white,
-        ),
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _SoldpageState extends State<Soldpage> {
   int number = 0;
   @override
   Widget build(BuildContext context) {

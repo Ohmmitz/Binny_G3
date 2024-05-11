@@ -32,13 +32,13 @@ class _PageOneState extends State<PageOne> {
                 const SizedBox(height: 30),
                 Row(
                   children: [
-                    Image.asset('lib/images/b-left.png'),
+                    Image.asset('assets/b-left.png'),
                     const SizedBox(width: 1),
-                    Image.asset('lib/images/b1.png'),
+                    Image.asset('assets/b1.png'),
                     const SizedBox(width: 1),
-                    Image.asset('lib/images/b2.png'),
+                    Image.asset('assets/b2.png'),
                     const SizedBox(width: 197),
-                    Image.asset('lib/images/Group 23.png'),
+                    Image.asset('assets/Group 23.png'),
                     const SizedBox(width: 1),
                   ],
                 ), // Logo
@@ -50,7 +50,7 @@ class _PageOneState extends State<PageOne> {
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
                       color: Colors.green,
-                      fontFamily: 'YourFontFamily',
+                      fontFamily: 'MybinnyFont',
                     ),
                   ),
                 ), // Title
@@ -60,7 +60,7 @@ class _PageOneState extends State<PageOne> {
                     '#ประเดนคำถามยอดฮิตวันนี้',
                     style: TextStyle(
                       fontSize: 14,
-                      fontFamily: 'YourFontFamily',
+                      fontFamily: 'MybinnyFont',
                     ),
                   ),
                 ), // Title
@@ -87,7 +87,7 @@ class _PageOneState extends State<PageOne> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.white,
                                 ),
                               ),
@@ -96,7 +96,7 @@ class _PageOneState extends State<PageOne> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.white,
                                 ),
                               ),
@@ -105,7 +105,7 @@ class _PageOneState extends State<PageOne> {
                                 'Top comment',
                                 style: TextStyle(
                                   fontSize: 11,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.green,
                                 ),
                               ),
@@ -113,7 +113,7 @@ class _PageOneState extends State<PageOne> {
                                 'ส่วนตัวผมมองเป็นในด้านของความรับ',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.white,
                                 ),
                               ),
@@ -121,7 +121,7 @@ class _PageOneState extends State<PageOne> {
                                 'ผิดชอบที่มีต่อสังคมมากกว่าครับ เพราะ...',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.white,
                                 ),
                               ),
@@ -136,7 +136,7 @@ class _PageOneState extends State<PageOne> {
                                         'Anonymous',
                                         style: TextStyle(
                                           fontSize: 14,
-                                          fontFamily: 'YourFontFamily',
+                                          fontFamily: 'MybinnyFont',
                                           color: Colors.white,
                                         ),
                                       ),
@@ -144,7 +144,7 @@ class _PageOneState extends State<PageOne> {
                                         '21 ก.พ. 67',
                                         style: TextStyle(
                                           fontSize: 12,
-                                          fontFamily: 'YourFontFamily',
+                                          fontFamily: 'MybinnyFont',
                                           color: Colors.white,
                                         ),
                                       ),
@@ -152,7 +152,7 @@ class _PageOneState extends State<PageOne> {
                                   ),
                                   const SizedBox(width: 10),
                                   Image.asset(
-                                    'lib/images/logo.png',
+                                    'assets/logo.png',
                                     width: 40,
                                     height: 40,
                                     fit: BoxFit.cover,
@@ -188,7 +188,7 @@ class _PageOneState extends State<PageOne> {
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 25,
-                                      fontFamily: 'YourFontFamily',
+                                      fontFamily: 'MybinnyFont',
                                       color: Colors.white,
                                     ),
                                   ),
@@ -197,7 +197,7 @@ class _PageOneState extends State<PageOne> {
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 25,
-                                      fontFamily: 'YourFontFamily',
+                                      fontFamily: 'MybinnyFont',
                                       color: Colors.white,
                                     ),
                                   ),
@@ -206,7 +206,7 @@ class _PageOneState extends State<PageOne> {
                                     'Top comment',
                                     style: TextStyle(
                                       fontSize: 11,
-                                      fontFamily: 'YourFontFamily',
+                                      fontFamily: 'MybinnyFont',
                                       color: Colors.green,
                                     ),
                                   ),
@@ -214,7 +214,7 @@ class _PageOneState extends State<PageOne> {
                                     'พวกถุงอาหารตากให้แห้ง ส่ง N15 ครับ',
                                     style: TextStyle(
                                       fontSize: 14,
-                                      fontFamily: 'YourFontFamily',
+                                      fontFamily: 'MybinnyFont',
                                       color: Colors.white,
                                     ),
                                   ),
@@ -222,7 +222,7 @@ class _PageOneState extends State<PageOne> {
                                     'กระป๋องขายของเก่าได้ครับ',
                                     style: TextStyle(
                                       fontSize: 14,
-                                      fontFamily: 'YourFontFamily',
+                                      fontFamily: 'MybinnyFont',
                                       color: Colors.white,
                                     ),
                                   ),
@@ -237,7 +237,7 @@ class _PageOneState extends State<PageOne> {
                                             'Anonymous',
                                             style: TextStyle(
                                               fontSize: 14,
-                                              fontFamily: 'YourFontFamily',
+                                              fontFamily: 'MybinnyFont',
                                               color: Colors.white,
                                             ),
                                           ),
@@ -245,7 +245,7 @@ class _PageOneState extends State<PageOne> {
                                             '21 ก.พ. 67',
                                             style: TextStyle(
                                               fontSize: 12,
-                                              fontFamily: 'YourFontFamily',
+                                              fontFamily: 'MybinnyFont',
                                               color: Colors.white,
                                             ),
                                           ),
@@ -253,7 +253,7 @@ class _PageOneState extends State<PageOne> {
                                       ),
                                       const SizedBox(width: 10),
                                       Image.asset(
-                                        'lib/images/logo.png',
+                                        'assets/logo.png',
                                         width: 40,
                                         height: 40,
                                         fit: BoxFit.cover,
@@ -282,7 +282,7 @@ class _PageOneState extends State<PageOne> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.white,
                                 ),
                               ),
@@ -291,7 +291,7 @@ class _PageOneState extends State<PageOne> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.white,
                                 ),
                               ),
@@ -300,7 +300,7 @@ class _PageOneState extends State<PageOne> {
                                 'Top comment',
                                 style: TextStyle(
                                   fontSize: 11,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.green,
                                 ),
                               ),
@@ -308,7 +308,7 @@ class _PageOneState extends State<PageOne> {
                                 'ทางนี้ตากให้แห้งค่ะแบบไม่ได้เอาด้านใน',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.white,
                                 ),
                               ),
@@ -316,7 +316,7 @@ class _PageOneState extends State<PageOne> {
                                 'ออกค่ะ แล้วส่ง n15 ค่ะ',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.white,
                                 ),
                               ),
@@ -331,7 +331,7 @@ class _PageOneState extends State<PageOne> {
                                         'Anonymous',
                                         style: TextStyle(
                                           fontSize: 14,
-                                          fontFamily: 'YourFontFamily',
+                                          fontFamily: 'MybinnyFont',
                                           color: Colors.white,
                                         ),
                                       ),
@@ -339,7 +339,7 @@ class _PageOneState extends State<PageOne> {
                                         '21 ก.พ. 67',
                                         style: TextStyle(
                                           fontSize: 12,
-                                          fontFamily: 'YourFontFamily',
+                                          fontFamily: 'MybinnyFont',
                                           color: Colors.white,
                                         ),
                                       ),
@@ -347,7 +347,7 @@ class _PageOneState extends State<PageOne> {
                                   ),
                                   const SizedBox(width: 10),
                                   Image.asset(
-                                    'lib/images/logo.png',
+                                    'assets/logo.png',
                                     width: 40,
                                     height: 40,
                                     fit: BoxFit.cover,
@@ -374,7 +374,7 @@ class _PageOneState extends State<PageOne> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.white,
                                 ),
                               ),
@@ -383,7 +383,7 @@ class _PageOneState extends State<PageOne> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.white,
                                 ),
                               ),
@@ -392,7 +392,7 @@ class _PageOneState extends State<PageOne> {
                                 'Top comment',
                                 style: TextStyle(
                                   fontSize: 11,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.green,
                                 ),
                               ),
@@ -400,7 +400,7 @@ class _PageOneState extends State<PageOne> {
                                 'AIS Shop',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.white,
                                 ),
                               ),
@@ -408,7 +408,7 @@ class _PageOneState extends State<PageOne> {
                                 'ตามห้างรับอุปกรณ์อิเล็กทรอนิกส์ค่ะ ส่...',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  fontFamily: 'YourFontFamily',
+                                  fontFamily: 'MybinnyFont',
                                   color: Colors.white,
                                 ),
                               ),
@@ -423,7 +423,7 @@ class _PageOneState extends State<PageOne> {
                                         'Anonymous',
                                         style: TextStyle(
                                           fontSize: 14,
-                                          fontFamily: 'YourFontFamily',
+                                          fontFamily: 'MybinnyFont',
                                           color: Colors.white,
                                         ),
                                       ),
@@ -431,7 +431,7 @@ class _PageOneState extends State<PageOne> {
                                         '21 ก.พ. 67',
                                         style: TextStyle(
                                           fontSize: 12,
-                                          fontFamily: 'YourFontFamily',
+                                          fontFamily: 'MybinnyFont',
                                           color: Colors.white,
                                         ),
                                       ),
@@ -439,7 +439,7 @@ class _PageOneState extends State<PageOne> {
                                   ),
                                   const SizedBox(width: 10),
                                   Image.asset(
-                                    'lib/images/logo.png',
+                                    'assets/logo.png',
                                     width: 40,
                                     height: 40,
                                     fit: BoxFit.cover,
@@ -492,7 +492,7 @@ class _PageOneState extends State<PageOne> {
                                         children: [
                                           Row(
                                             children: [
-                                              Image.asset('lib/images/men.png'),
+                                              Image.asset('assets/men.png'),
                                               const Padding(
                                                 padding: EdgeInsets.only(left: 10),
                                                 child: Column(
@@ -515,7 +515,7 @@ class _PageOneState extends State<PageOne> {
                                             padding: const EdgeInsets.only(right: 20),
                                             child: Column(
                                               children: [
-                                                Image.asset('lib/images/Vectorw.png'),
+                                                Image.asset('assets/Vectorw.png'),
                                                 const SizedBox(width: 10),
                                               ],
                                             ),
@@ -531,10 +531,10 @@ class _PageOneState extends State<PageOne> {
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.end,
                                           children: [
-                                            Image.asset('lib/images/Vector.png', width: 35),
+                                            Image.asset('assets/Vector.png', width: 35),
                                             const SizedBox(width: 1),
                                             const Text('10'),
-                                            Image.asset('lib/images/chat.png', width: 30),
+                                            Image.asset('assets/chat.png', width: 30),
                                             const SizedBox(width: 1),
                                             const Text('1'),
                                           ],
@@ -545,7 +545,7 @@ class _PageOneState extends State<PageOne> {
                                         padding: const EdgeInsets.only(right: 16),
                                         child: Column(
                                           children: [
-                                            Image.asset('lib/images/Line 19.png'),
+                                            Image.asset('assets/Line 19.png'),
                                           ],
                                         ),
                                       ),
@@ -558,7 +558,7 @@ class _PageOneState extends State<PageOne> {
                                             Positioned(
                                               top: 30,
                                               child: Image.asset(
-                                                'lib/images/girl.png',
+                                                'assets/girl.png',
                                                 width: 30,
                                               ),
                                             ),
@@ -617,7 +617,7 @@ class _PageOneState extends State<PageOne> {
                                           children: [
                                             Row(
                                               children: [
-                                                Image.asset('lib/images/Ellipse 78.png'),
+                                                Image.asset('assets/Ellipse 78.png'),
                                                 const Padding(
                                                   padding: EdgeInsets.only(left: 10),
                                                   child: Column(
@@ -640,7 +640,7 @@ class _PageOneState extends State<PageOne> {
                                               padding: const EdgeInsets.only(right: 20),
                                               child: Column(
                                                 children: [
-                                                  Image.asset('lib/images/Vectorw.png'),
+                                                  Image.asset('assets/Vectorw.png'),
                                                   const SizedBox(width: 10),
                                                 ],
                                               ),
@@ -655,10 +655,10 @@ class _PageOneState extends State<PageOne> {
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.end,
                                             children: [
-                                              Image.asset('lib/images/Vector.png', width: 35),
+                                              Image.asset('assets/Vector.png', width: 35),
                                               const SizedBox(width: 1),
                                               const Text('9'),
-                                              Image.asset('lib/images/chat.png', width: 30),
+                                              Image.asset('assets/chat.png', width: 30),
                                               const SizedBox(width: 1),
                                               const Text('2'),
                                             ],
@@ -669,7 +669,7 @@ class _PageOneState extends State<PageOne> {
                                           padding: const EdgeInsets.only(right: 16),
                                           child: Column(
                                             children: [
-                                              Image.asset('lib/images/Line 19.png'),
+                                              Image.asset('assets/Line 19.png'),
                                             ],
                                           ),
                                         ),
@@ -682,7 +682,7 @@ class _PageOneState extends State<PageOne> {
                                               Positioned(
                                                 top: 30,
                                                 child: Image.asset(
-                                                  'lib/images/Ellipse 782.png',
+                                                  'assets/Ellipse 782.png',
                                                   width: 30,
                                                 ),
                                               ),
@@ -733,7 +733,7 @@ class _PageOneState extends State<PageOne> {
                                         children: [
                                           Row(
                                             children: [
-                                              Image.asset('lib/images/Ellipse 78.png'),
+                                              Image.asset('assets/Ellipse 78.png'),
                                               const Padding(
                                                 padding: EdgeInsets.only(left: 10),
                                                 child: Column(
@@ -756,7 +756,7 @@ class _PageOneState extends State<PageOne> {
                                             padding: const EdgeInsets.only(right: 20),
                                             child: Column(
                                               children: [
-                                                Image.asset('lib/images/Vectorw.png'),
+                                                Image.asset('assets/Vectorw.png'),
                                                 const SizedBox(width: 10),
                                               ],
                                             ),
@@ -774,10 +774,10 @@ class _PageOneState extends State<PageOne> {
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.end,
                                           children: [
-                                            Image.asset('lib/images/Vector.png', width: 35),
+                                            Image.asset('assets/Vector.png', width: 35),
                                             const SizedBox(width: 1),
                                             const Text('18'),
-                                            Image.asset('lib/images/chat.png', width: 30),
+                                            Image.asset('assets/chat.png', width: 30),
                                             const SizedBox(width: 1),
                                             const Text('4'),
                                           ],
@@ -788,7 +788,7 @@ class _PageOneState extends State<PageOne> {
                                         padding: const EdgeInsets.only(right: 16),
                                         child: Column(
                                           children: [
-                                            Image.asset('lib/images/Line 19.png'),
+                                            Image.asset('assets/Line 19.png'),
                                           ],
                                         ),
                                       ),
@@ -801,7 +801,7 @@ class _PageOneState extends State<PageOne> {
                                             Positioned(
                                               top: 30,
                                               child: Image.asset(
-                                                'lib/images/girl.png',
+                                                'assets/girl.png',
                                                 width: 30,
                                               ),
                                             ),
@@ -851,7 +851,7 @@ class _PageOneState extends State<PageOne> {
                                         children: [
                                           Row(
                                             children: [
-                                              Image.asset('lib/images/men.png'),
+                                              Image.asset('assets/men.png'),
                                               const Padding(
                                                 padding: EdgeInsets.only(left: 10),
                                                 child: Column(
@@ -874,7 +874,7 @@ class _PageOneState extends State<PageOne> {
                                             padding: const EdgeInsets.only(right: 20),
                                             child: Column(
                                               children: [
-                                                Image.asset('lib/images/Vectorw.png'),
+                                                Image.asset('assets/Vectorw.png'),
                                                 const SizedBox(width: 10),
                                               ],
                                             ),
@@ -890,10 +890,10 @@ class _PageOneState extends State<PageOne> {
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.end,
                                           children: [
-                                            Image.asset('lib/images/Vector.png', width: 35),
+                                            Image.asset('assets/Vector.png', width: 35),
                                             const SizedBox(width: 1),
                                             const Text('10'),
-                                            Image.asset('lib/images/chat.png', width: 30),
+                                            Image.asset('assets/chat.png', width: 30),
                                             const SizedBox(width: 1),
                                             const Text('1'),
                                           ],
@@ -904,7 +904,7 @@ class _PageOneState extends State<PageOne> {
                                         padding: const EdgeInsets.only(right: 16),
                                         child: Column(
                                           children: [
-                                            Image.asset('lib/images/Line 19.png'),
+                                            Image.asset('assets/Line 19.png'),
                                           ],
                                         ),
                                       ),
@@ -917,7 +917,7 @@ class _PageOneState extends State<PageOne> {
                                             Positioned(
                                               top: 30,
                                               child: Image.asset(
-                                                'lib/images/girl.png',
+                                                'assets/girl.png',
                                                 width: 30,
                                               ),
                                             ),
@@ -1039,7 +1039,7 @@ class _PageOneState extends State<PageOne> {
                           right: 10,
                           top: 8,
                           child: Image.asset(
-                            'lib/images/Vector (1).png',
+                            'assets/Vector (1).png',
                             width: 30,
                           ),
                         ),
@@ -1109,7 +1109,7 @@ class _PageThreeState extends State<page_one_2> {
                             children: [
                               Row(
                                 children: [
-                                  Image.asset('lib/images/men.png'),
+                                  Image.asset('assets/men.png'),
                                   const Padding(
                                     padding: EdgeInsets.only(left: 10),
                                     child: Column(
@@ -1132,7 +1132,7 @@ class _PageThreeState extends State<page_one_2> {
                                 padding: const EdgeInsets.only(right: 20),
                                 child: Column(
                                   children: [
-                                    Image.asset('lib/images/Vectorw.png'),
+                                    Image.asset('assets/Vectorw.png'),
                                     const SizedBox(width: 10),
                                   ],
                                 ),
@@ -1148,10 +1148,10 @@ class _PageThreeState extends State<page_one_2> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Image.asset('lib/images/Vector.png', width: 35),
+                                Image.asset('assets/Vector.png', width: 35),
                                 const SizedBox(width: 1),
                                 const Text('10'),
-                                Image.asset('lib/images/chat.png', width: 30),
+                                Image.asset('assets/chat.png', width: 30),
                                 const SizedBox(width: 1),
                                 const Text('1'),
                               ],
@@ -1162,7 +1162,7 @@ class _PageThreeState extends State<page_one_2> {
                             padding: const EdgeInsets.only(right: 16),
                             child: Column(
                               children: [
-                                Image.asset('lib/images/Line 19.png'),
+                                Image.asset('assets/Line 19.png'),
                               ],
                             ),
                           ),
@@ -1175,7 +1175,7 @@ class _PageThreeState extends State<page_one_2> {
                                 Positioned(
                                   top: 30,
                                   child: Image.asset(
-                                    'lib/images/girl.png',
+                                    'assets/girl.png',
                                     width: 30,
                                   ),
                                 ),
@@ -1227,7 +1227,7 @@ class _PageThreeState extends State<page_one_2> {
                             children: [
                               Row(
                                 children: [
-                                  Image.asset('lib/images/Ellipse 78.png'),
+                                  Image.asset('assets/Ellipse 78.png'),
                                   const Padding(
                                     padding: EdgeInsets.only(left: 10),
                                     child: Column(
@@ -1250,7 +1250,7 @@ class _PageThreeState extends State<page_one_2> {
                                 padding: const EdgeInsets.only(right: 20),
                                 child: Column(
                                   children: [
-                                    Image.asset('lib/images/Vectorw.png'),
+                                    Image.asset('assets/Vectorw.png'),
                                     const SizedBox(width: 10),
                                   ],
                                 ),
@@ -1265,10 +1265,10 @@ class _PageThreeState extends State<page_one_2> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Image.asset('lib/images/Vector.png', width: 35),
+                                Image.asset('assets/Vector.png', width: 35),
                                 const SizedBox(width: 1),
                                 const Text('9'),
-                                Image.asset('lib/images/chat.png', width: 30),
+                                Image.asset('assets/chat.png', width: 30),
                                 const SizedBox(width: 1),
                                 const Text('2'),
                               ],
@@ -1279,7 +1279,7 @@ class _PageThreeState extends State<page_one_2> {
                             padding: const EdgeInsets.only(right: 16),
                             child: Column(
                               children: [
-                                Image.asset('lib/images/Line 19.png'),
+                                Image.asset('assets/Line 19.png'),
                               ],
                             ),
                           ),
@@ -1292,7 +1292,7 @@ class _PageThreeState extends State<page_one_2> {
                                 Positioned(
                                   top: 30,
                                   child: Image.asset(
-                                    'lib/images/Ellipse 782.png',
+                                    'assets/Ellipse 782.png',
                                     width: 30,
                                   ),
                                 ),
@@ -1342,7 +1342,7 @@ class _PageThreeState extends State<page_one_2> {
                             children: [
                               Row(
                                 children: [
-                                  Image.asset('lib/images/Ellipse 78.png'),
+                                  Image.asset('assets/Ellipse 78.png'),
                                   const Padding(
                                     padding: EdgeInsets.only(left: 10),
                                     child: Column(
@@ -1365,7 +1365,7 @@ class _PageThreeState extends State<page_one_2> {
                                 padding: const EdgeInsets.only(right: 20),
                                 child: Column(
                                   children: [
-                                    Image.asset('lib/images/Vectorw.png'),
+                                    Image.asset('assets/Vectorw.png'),
                                     const SizedBox(width: 10),
                                   ],
                                 ),
@@ -1383,10 +1383,10 @@ class _PageThreeState extends State<page_one_2> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Image.asset('lib/images/Vector.png', width: 35),
+                                Image.asset('assets/Vector.png', width: 35),
                                 const SizedBox(width: 1),
                                 const Text('18'),
-                                Image.asset('lib/images/chat.png', width: 30),
+                                Image.asset('assets/chat.png', width: 30),
                                 const SizedBox(width: 1),
                                 const Text('4'),
                               ],
@@ -1397,7 +1397,7 @@ class _PageThreeState extends State<page_one_2> {
                             padding: const EdgeInsets.only(right: 16),
                             child: Column(
                               children: [
-                                Image.asset('lib/images/Line 19.png'),
+                                Image.asset('assets/Line 19.png'),
                               ],
                             ),
                           ),
@@ -1410,7 +1410,7 @@ class _PageThreeState extends State<page_one_2> {
                                 Positioned(
                                   top: 30,
                                   child: Image.asset(
-                                    'lib/images/girl.png',
+                                    'assets/girl.png',
                                     width: 30,
                                   ),
                                 ),
@@ -1460,7 +1460,7 @@ class _PageThreeState extends State<page_one_2> {
                             children: [
                               Row(
                                 children: [
-                                  Image.asset('lib/images/men.png'),
+                                  Image.asset('assets/men.png'),
                                   const Padding(
                                     padding: EdgeInsets.only(left: 10),
                                     child: Column(
@@ -1483,7 +1483,7 @@ class _PageThreeState extends State<page_one_2> {
                                 padding: const EdgeInsets.only(right: 20),
                                 child: Column(
                                   children: [
-                                    Image.asset('lib/images/Vectorw.png'),
+                                    Image.asset('assets/Vectorw.png'),
                                     const SizedBox(width: 10),
                                   ],
                                 ),
@@ -1499,10 +1499,10 @@ class _PageThreeState extends State<page_one_2> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Image.asset('lib/images/Vector.png', width: 35),
+                                Image.asset('assets/Vector.png', width: 35),
                                 const SizedBox(width: 1),
                                 const Text('10'),
-                                Image.asset('lib/images/chat.png', width: 30),
+                                Image.asset('assets/chat.png', width: 30),
                                 const SizedBox(width: 1),
                                 const Text('1'),
                               ],
@@ -1513,7 +1513,7 @@ class _PageThreeState extends State<page_one_2> {
                             padding: const EdgeInsets.only(right: 16),
                             child: Column(
                               children: [
-                                Image.asset('lib/images/Line 19.png'),
+                                Image.asset('assets/Line 19.png'),
                               ],
                             ),
                           ),
@@ -1526,7 +1526,7 @@ class _PageThreeState extends State<page_one_2> {
                                 Positioned(
                                   top: 30,
                                   child: Image.asset(
-                                    'lib/images/girl.png',
+                                    'assets/girl.png',
                                     width: 30,
                                   ),
                                 ),
@@ -1615,7 +1615,7 @@ class _PageThreeState extends State<page_one_2> {
               right: 10,
               top: 8,
               child: Image.asset(
-                'lib/images/Vector (1).png',
+                'assets/Vector (1).png',
                 width: 30,
               ),
             ),

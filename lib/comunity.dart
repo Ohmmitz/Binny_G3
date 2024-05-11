@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Your App Title',
+      theme: ThemeData(
+        primarySwatch: Colors.green, // Example theme
+      ),
+      home: CommunityPage(), // Your starting page
+    );
+  }
+}
 
 class CommunityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
+    return Scaffold(
+      appBar: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -16,9 +31,9 @@ class CommunityPage extends StatelessWidget {
                     'assets/sorn.png',
                     height: 40,
                   ),
-                  SizedBox(width: 5), // เพิ่มระยะห่างระหว่างรูป sorn กับ group
+                  SizedBox(width: 2), // เพิ่มระยะห่างระหว่างรูป sorn กับ group
                   Image.asset(
-                    'assets/group.png',
+                    'assets/Group(1).png',
                     height: 30,
                   ),
                 ],
@@ -182,7 +197,6 @@ class CommunityPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }

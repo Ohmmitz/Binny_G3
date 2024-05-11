@@ -1,9 +1,26 @@
+import 'package:binny_project_g3/Reward.dart';
+import 'package:binny_project_g3/homescreen.dart';
+import 'package:binny_project_g3/scan_home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:binny_project_g3/home.dart';
-import 'package:binny_project_g3/reward.dart';
-import 'package:binny_project_g3/scan.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Your App Title',
+      theme: ThemeData(
+        primarySwatch: Colors.green, // Example theme
+      ),
+      home: Profile(), // Your starting page
+    );
+  }
+}
 
 class Profile extends StatelessWidget {
   const Profile({Key? key});
@@ -22,7 +39,7 @@ class Profile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
-                'assets/profile/binn.png',
+                'assets/binn.png',
                 fit: BoxFit.cover,
                 height: 22,
               ),
@@ -57,7 +74,7 @@ class Profile extends StatelessWidget {
                 ),
                 Positioned(
                   top: MediaQuery.of(context).size.height / 5,
-                  child: Image.asset('assets/profile/BG_img.png'),
+                  child: Image.asset('assets/BG_img.png'),
                 ),
                 Positioned(
                   top: MediaQuery.of(context).size.height / 3.75,
@@ -80,7 +97,7 @@ class Profile extends StatelessWidget {
                       width: 114,
                       height: 114,
                       child: Image.asset(
-                        'assets/profile/profile_img.png',
+                        'assets/profile_img.png',
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -114,7 +131,7 @@ class Profile extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => Home()),
+                        MaterialPageRoute(builder: (context) => Homepage()),
                       );
                     },
                     child: Column(
@@ -132,7 +149,7 @@ class Profile extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => Scan()),
+                        MaterialPageRoute(builder: (context) =>   ScanHomePage()),
                       );
                     },
                     child: Column(
@@ -150,7 +167,7 @@ class Profile extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => RewardPage()),
+                        MaterialPageRoute(builder: (context) => RewardScreen()),
                       );
                     },
                     child: Column(

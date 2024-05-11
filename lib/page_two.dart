@@ -41,7 +41,7 @@ class _PageTwoState extends State<PageTwo> {
                     },
                     child: Row(
                       children: [
-                        Image.asset('lib/images/b-left.png'),
+                        Image.asset('assets/b-left.png'),
                         const SizedBox(width: 8),
                         const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +64,7 @@ class _PageTwoState extends State<PageTwo> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Image.asset('lib/images/Group 23.png'),
+                        Image.asset('assets/Group 23.png'),
                       ],
                     ),
                   )
@@ -155,7 +155,7 @@ class _PageTwoState extends State<PageTwo> {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        Image.asset('lib/images/Vector (1).png'),
+                                        Image.asset('assets/Vector (1).png'),
                                       ],
                                     ),
                                   ),
@@ -187,7 +187,7 @@ class _PageTwoState extends State<PageTwo> {
                                       children: [
                                         Row(
                                           children: [
-                                            Image.asset('lib/images/men.png'),
+                                            Image.asset('assets/men.png'),
                                             const Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
@@ -205,7 +205,7 @@ class _PageTwoState extends State<PageTwo> {
                                         ),
                                         Column(
                                           children: [
-                                            Image.asset('lib/images/Vectorw.png'),
+                                            Image.asset('assets/Vectorw.png'),
                                             const SizedBox(width: 20, height: 12,), // เพิ่มช่องว่างระหว่างไอคอน
                                           ],
                                         ),
@@ -222,11 +222,11 @@ class _PageTwoState extends State<PageTwo> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Image.asset('lib/images/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
+                                      Image.asset('assets/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
                                       SizedBox(width: 1),
                                       Text('10'),
                                       SizedBox(width: 2),
-                                      Image.asset('lib/images/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
+                                      Image.asset('assets/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
                                       SizedBox(width: 1),
                                       Text('2'),
                                       SizedBox(width: 4),
@@ -234,7 +234,7 @@ class _PageTwoState extends State<PageTwo> {
                                   ),
                                   Column(
                                     children: [
-                                      Image.asset('lib/images/Line 19.png')
+                                      Image.asset('assets/Line 19.png')
                                     ],
                                   ),
                                   SizedBox(height: 8),
@@ -243,7 +243,7 @@ class _PageTwoState extends State<PageTwo> {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        Image.asset('lib/images/girl.png'),
+                                        Image.asset('assets/girl.png'),
                                         const Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
@@ -275,7 +275,7 @@ class _PageTwoState extends State<PageTwo> {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        Image.asset('lib/images/Ellipse 782.png'),
+                                        Image.asset('assets/Ellipse 782.png'),
                                         const Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
@@ -336,7 +336,7 @@ class _PageTwoState extends State<PageTwo> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Image.asset('lib/images/Vector (1).png'),
+                            Image.asset('assets/Vector (1).png'),
                           ],
                         ),
                       ),
@@ -344,7 +344,7 @@ class _PageTwoState extends State<PageTwo> {
                       SizedBox(width: 8), // Add space between the text field and the image
                       Align(
                         alignment: const Alignment(5.0, 0.5), // Adjust alignment as needed
-                        child: Image.asset('lib/images/Ellipse 781.png'),
+                        child: Image.asset('assets/Ellipse 781.png'),
                       ),
                       Expanded(
                         child: TextField(
@@ -362,7 +362,7 @@ class _PageTwoState extends State<PageTwo> {
                       SizedBox(width: 5), // Add space between the text field and the image
                       Align(
                         alignment: const Alignment(10.0, 0.2), // Adjust alignment as needed
-                        child: Image.asset('lib/images/Frame 334.png'),
+                        child: Image.asset('assets/Frame 334.png'),
                       ),// Replace 'your_image.png' with the actual image path
                     ],
                   ),

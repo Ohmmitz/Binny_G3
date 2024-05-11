@@ -1,8 +1,8 @@
+import 'package:binny_project_g3/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-
 
 
 class TrashPage extends StatefulWidget {
@@ -23,9 +23,7 @@ class _TrashPageState extends State<TrashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           leading: Padding(
             padding: EdgeInsets.only(left: 20.0),
@@ -108,9 +106,6 @@ class _TrashPageState extends State<TrashPage> {
                       ),
                     ],
                   ),
-
-
-
                   SizedBox(height: 0),
                   GestureDetector(
                     onTap: () {
@@ -287,7 +282,6 @@ class _TrashPageState extends State<TrashPage> {
             );
           },
         ),
-      ),
     );
   }
 

@@ -2,6 +2,22 @@ import 'package:binny_project_g3/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Your App Title',
+      theme: ThemeData(
+        primarySwatch: Colors.green, // Example theme
+      ),
+      home: AddressConfirmation(multipliedData: {},), // Your starting page
+    );
+  }
+}
 
 class AddressConfirmation extends StatelessWidget {
   final Map<String, double> multipliedData;
@@ -35,7 +51,7 @@ class AddressConfirmation extends StatelessWidget {
                 launchMap(); // เรียกใช้งานฟังก์ชั่นเมื่อคลิกที่รูปภาพแผนที่
               },
               child: Image.asset(
-                'assets/images/map.jpg',
+                'assets/map.jpg',
                 width: MediaQuery.of(context).size.width,
                 fit: BoxFit.cover, // ทำให้รูปภาพปรับขนาดเพื่อตรงกับขนาดหน้าจอ
               ),
@@ -241,13 +257,13 @@ class ConfirmationPage extends StatelessWidget {
         children: [
           SizedBox(height: 50,),
           Image.asset(
-            'assets/images/c1.png',
+            'assets/c1.png',
             width: MediaQuery.of(context).size.width,
             fit: BoxFit.cover,
           ),
           SizedBox(height: 10),
           Image.asset(
-            'assets/images/c4.png',
+            'assets/c4.png',
             width: 356,
             height: 90,
             fit: BoxFit.cover,
@@ -361,7 +377,7 @@ class ConfirmationPage extends StatelessWidget {
                           SizedBox(height: 10),
                           Divider(),
                           Text(
-                            'ชื่อผู้ชาย ',
+                            'ชื่อผู้ขาย ',
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -466,7 +482,7 @@ class ConfirmationPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/c2.png',
+                  'assets/c2.png',
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover,
                 ),
@@ -482,7 +498,7 @@ class ConfirmationPage extends StatelessWidget {
                 onTap: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) =>  HomePage()), // นี่คือหน้ายืนยันข้อมูลของคุณ
+                    MaterialPageRoute(builder: (context) =>  Homescreen()), // นี่คือหน้ายืนยันข้อมูลของคุณ
                   );
 
                 },

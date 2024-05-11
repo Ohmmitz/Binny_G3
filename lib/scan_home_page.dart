@@ -3,6 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'detail_page.dart';
 
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Your App Title',
+      theme: ThemeData(
+        primarySwatch: Colors.green, // Example theme
+      ),
+      home:  ScanHomePage(), // Your starting page
+    );
+  }
+}
 
 class ScanHomePage extends StatefulWidget {
   const ScanHomePage({Key? key});

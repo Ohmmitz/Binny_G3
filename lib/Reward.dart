@@ -1,26 +1,200 @@
+import 'package:binny_project_g3/homescreen.dart';
+import 'package:binny_project_g3/profile.dart';
+import 'package:binny_project_g3/scan_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+class Rewardpage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Your App Title',
+      theme: ThemeData(
+        primarySwatch: Colors.green, // Example theme
+      ),
+      home: RewardScreen(), // Your starting page
+    );
+  }
+}
 
-class RewardPage extends StatefulWidget {
+class RewardScreen extends StatefulWidget {
+  const RewardScreen({Key? key}) : super(key: key);
+
+  @override
+  _RewardScreenState createState() => _RewardScreenState();
+}
+
+class _RewardScreenState extends State<RewardScreen> with SingleTickerProviderStateMixin {
+
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this); // 2 is the number of tabs
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        extendBodyBehindAppBar: true,
+          appBar: AppBar(
+          title: Text("Logo"),
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(48.0),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50),
+              child: Center(
+                child: TabBar(
+                  controller: _tabController,
+                  isScrollable: true,
+                  indicatorColor: Colors.green,
+                  labelColor: Colors.green,
+                  unselectedLabelColor: Colors.grey,
+                  tabs: [
+                    Tab(text: "สะสมคะแนน"),
+                    Tab(text: "แลกของ"),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        body: Stack(children: [
+          SingleChildScrollView(
+            child: Stack(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height + 50,
+                ),
+                Positioned(
+                  top: MediaQuery.of(context).size.height / 3.75,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    height: MediaQuery.of(context).size.height -
+                        (MediaQuery.of(context).size.height / 3.75),
+                    child: RewardDetail(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 22,
+            left: 16,
+            right: 16,
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0x3F000000),
+                    blurRadius: 8.50,
+                    offset: Offset(0, 0),
+                    spreadRadius: 0,
+                  )
+                ],
+                borderRadius: BorderRadius.all(Radius.circular(100)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => Homescreen()),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.home,
+                          size: 30,
+                        ),
+                        SizedBox(height: 2),
+                        Text('หน้าแรก')
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) =>  ScanHomePage() ),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.qr_code,
+                          size: 30,
+                        ),
+                        SizedBox(height: 2),
+                        Text('สแกนแยกขยะ')
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => RewardScreen()),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.comment_outlined,
+                          size: 30,
+                        ),
+                        SizedBox(height: 2),
+                        Text('แต้มสะสม')
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => Profile()),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.person_outlined,
+                          size: 30,
+                        ),
+                        SizedBox(height: 2),
+                        Text('โปรไฟล์')
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ]),
+      ),
+    );
+  }
+}
+
+class RewardDetail extends StatefulWidget {
   @override
   _RewardPageState createState() => _RewardPageState();
 }
 
-class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateMixin {
+class _RewardPageState extends State<RewardDetail> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  int _selectedIndex = 0;
 
-    void _onItemTapped(int index) {
-      setState(() {
-        _selectedIndex = index;
-      });
-      
-      // Navigate to RewardPage when the corresponding bottom nav item is tapped
-      if (_selectedIndex == 0) {
-        Navigator.pushNamed(context, '/');
-      }
-    }
   @override
   void initState() {
     super.initState();
@@ -36,28 +210,6 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Logo"),
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(48.0),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50),
-            child: Center(
-              child: TabBar(
-                controller: _tabController,
-                isScrollable: true,
-                indicatorColor: Colors.green,
-                labelColor: Colors.green,
-                unselectedLabelColor: Colors.grey,
-                tabs: [
-                  Tab(text: "สะสมคะแนน"),
-                  Tab(text: "แลกของ"),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
       body: TabBarView(
         controller: _tabController,
         children: [
@@ -188,6 +340,7 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
+
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
@@ -198,10 +351,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* กำหนดการกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/KFC.png',
+                     GestureDetector(
+                      onTap: () {
+                          // เปิดลิงก์เมื่อรูปถูกคลิก
+                          launch('https://www.kfc.co.th/');
+                                 },
+                      child:Image.asset(
+                                'assets/KFC.png',
                                 height: 50,
                               ),
+                     ),
                               Text(
                                 'KFC',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -221,10 +380,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* การกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/JonesSalad .png',
+                        GestureDetector(
+                        onTap: () {
+                       // เปิดลิงก์เมื่อรูปถูกคลิก
+                      launch('https://jonessalad.com/');
+                            },
+                            child:Image.asset(
+                                'assets/JonesSalad .png',
                                 height: 50,
                               ),
+                        ),
                               Text(
                                 'Jones Salad',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -243,10 +408,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* การกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/Chesters.png',
+                      GestureDetector(
+                      onTap: () {
+                      // เปิดลิงก์เมื่อรูปถูกคลิก
+                    launch('https://www.chesters.co.th/');
+                        },
+                           child:Image.asset(
+                                'assets/Chesters.png',
                                 height: 50,
                               ),
+                      ),
                               Text(
                                 'Chesters',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -265,10 +436,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* การกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/MIZUE.png',
+                    GestureDetector(
+                    onTap: () {
+                    // เปิดลิงก์เมื่อรูปถูกคลิก
+                       launch('https://www.wongnai.com/restaurants/2478830Wc-mixue-%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%A1%E0%B8%94');
+                           },
+                              child: Image.asset(
+                                'assets/MIZUE.png',
                                 height: 50,
                               ),
+                    ),
                               Text(
                                 'MIZUE',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -287,10 +464,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* การกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/โอ้กะจู๋.png',
+                        GestureDetector(
+                onTap: () {
+                  // เปิดลิงก์เมื่อรูปถูกคลิก
+                      launch(' https://www.ohkajhuorganic.com/en/');
+                        },
+                          child: Image.asset(
+                                'assets/โอ้กะจู๋.png',
                                 height: 50,
                               ),
+                        ),
                               Text(
                                 'โอ้กะจู๋',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -330,10 +513,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* กำหนดการกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/Big C.png',
+                          GestureDetector(
+                            onTap: () {
+                            // เปิดลิงก์เมื่อรูปถูกคลิก
+                           launch('https://www.bigc.co.th/');
+                             },
+                         child:Image.asset(
+                                'assets/Big C.png',
                                 height: 50,
                               ),
+                          ),
                               Text(
                                 'Big C',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -353,10 +542,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* การกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/Boots.png',
+                            GestureDetector(
+                            onTap: () {
+                            // เปิดลิงก์เมื่อรูปถูกคลิก
+                             launch('https://store.boots.co.th/th/');
+                              },
+                        child:Image.asset(
+                                'assets/Boots.png',
                                 height: 50,
                               ),
+                            ),
                               Text(
                                 'Boots',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -375,10 +570,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* การกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/Maxvalu.png',
+                          GestureDetector(
+                            onTap: () {
+                            // เปิดลิงก์เมื่อรูปถูกคลิก
+                            launch(' https://www.aeonthailand.co.th/th/');
+                               },
+                              child:Image.asset(
+                                'assets/Maxvalu.png',
                                 height: 50,
                               ),
+                          ),
                               Text(
                                 'Maxvalus',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -397,10 +598,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* การกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/Tops daily.png',
+                            GestureDetector(
+                             onTap: () {
+                               // เปิดลิงก์เมื่อรูปถูกคลิก
+                             launch(' https://topsdaily.tops.co.th/');
+                               },
+                          child:Image.asset(
+                                'assets/Tops daily.png',
                                 height: 50,
                               ),
+                            ),
                               Text(
                                 'Tops daily',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -419,10 +626,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* การกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/Tops.png',
+                           GestureDetector(
+                           onTap: () {
+                            // เปิดลิงก์เมื่อรูปถูกคลิก
+                            launch(' https://www.tops.co.th/th');
+                             },
+                      child:Image.asset(
+                                'assets/Tops.png',
                                 height: 50,
                               ),
+                           ),
                               Text(
                                 'Tops',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -449,7 +662,7 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           child: Column(
                             children: [
                               Image.asset(
-                                'assets/images/Frame1.png', // เปลี่ยนตามไฟล์รูปที่ต้องการ
+                                'assets/Frame1.png', // เปลี่ยนตามไฟล์รูปที่ต้องการ
                                 height: 120,
                               ),
                             ],
@@ -467,7 +680,7 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           child: Column(
                             children: [
                               Image.asset(
-                                'assets/images/Frame2.png', // เปลี่ยนตามไฟล์รูปที่ต้องการ
+                                'assets/Frame2.png', // เปลี่ยนตามไฟล์รูปที่ต้องการ
                                 height: 120,
                               ),
                             ],
@@ -485,7 +698,7 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           child: Column(
                             children: [
                               Image.asset(
-                                'assets/images/Frame3.png', // เปลี่ยนตามไฟล์รูปที่ต้องการ
+                                'assets/Frame3.png', // เปลี่ยนตามไฟล์รูปที่ต้องการ
                                 height: 120,
                               ),
                             ],
@@ -523,10 +736,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* กำหนดการกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/ร้านยาฟาสซิโน.png',
+                        GestureDetector(
+                          onTap: () {
+                            // เปิดลิงก์เมื่อรูปถูกคลิก
+                                 launch(' https://www.fascino.co.th/');
+                          },
+                              child:Image.asset(
+                                'assets/ร้านยาฟาสซิโน.png',
                                 height: 50,
                               ),
+                        ),
                               Text(
                                 'ร้านยาฟาสซิโน',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -545,10 +764,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* การกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/บ้านยา ฟาร์มาเฮ้าส์.png',
+                            GestureDetector(
+                            onTap: () {
+                         // เปิดลิงก์เมื่อรูปถูกคลิก
+                         launch('  https://shopee.co.th/waranya_ice');
+                          },
+                      child:Image.asset(
+                                'assets/บ้านยา ฟาร์มาเฮ้าส์.png',
                                 height: 50,
                               ),
+                            ),
                               Text(
                                 'บ้านยา ฟาร์มาเฮ้าส์',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -567,10 +792,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* การกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/ร้านยากรุงเทพ.png',
+                             GestureDetector(
+                               onTap: () {
+                                // เปิดลิงก์เมื่อรูปถูกคลิก
+                             launch('  https://www.bangkokdrugstore.co.th/home.php');
+                              },
+                           child:Image.asset(
+                                'assets/ร้านยากรุงเทพ.png',
                                 height: 50,
                               ),
+                             ),
                               Text(
                                 'ร้านยากรุงเทพ',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -589,10 +820,16 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                           onPressed: () { /* การกระทำ */ },
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/eXta Plus.png',
+                       GestureDetector(
+                          onTap: () {
+                         // เปิดลิงก์เมื่อรูปถูกคลิก
+                         launch('  https://www.exta.co.th/');
+                          },
+                       child:Image.asset(
+                                'assets/eXta Plus.png',
                                 height: 50,
                               ),
+                       ),
                               Text(
                                 'eXta Plus',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -721,13 +958,19 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                        GestureDetector(
+                                          onTap: () {
+                                            // เปิดลิงก์เมื่อรูปถูกคลิก
+                                            launch('https://www.apple.com/th/shop/buy-ipad/ipad/64gb-%E0%B8%9F%E0%B9%89%E0%B8%B2-wifi');
+                                          },
+                                       child:  SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc1.png', // Path to your image
+                                            'assets/picc1.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
+                                        ),
                                         ),
                                         SizedBox(height: 5),
                                         Padding(
@@ -759,14 +1002,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                                // เปิดลิงก์เมื่อรูปถูกคลิก
+                                launch('https://www.trendhunter.com/trends/icemouse2');
+                                     },
+                                        child :SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc2.png', // Path to your image
+                                            'assets/picc2.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -797,14 +1046,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                        // เปิดลิงก์เมื่อรูปถูกคลิก
+                          launch('https://store.sony.co.th/th/products/wh-ch520');
+                                },
+                                        child:SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc3.png', // Path to your image
+                                            'assets/picc3.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -835,14 +1090,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                              // เปิดลิงก์เมื่อรูปถูกคลิก
+                            launch('https://www.bnn.in.th/th/mkt/seo-samsung-galaxy-s24-series');
+                                },
+                                       child:  SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc4.png', // Path to your image
+                                            'assets/picc4.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -902,13 +1163,19 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                        GestureDetector(
+                                        onTap: () {
+                                      // เปิดลิงก์เมื่อรูปถูกคลิก
+                                      launch('https://uptoyou.live/product-detail.html?id=6');
+                            },
+                                        child:SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc5.png', // Path to your image
+                                            'assets/picc5.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
+                                        ),
                                         ),
                                         SizedBox(height: 5),
                                         Padding(
@@ -940,14 +1207,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                        // เปิดลิงก์เมื่อรูปถูกคลิก
+                              launch('https://rubberkiller.com/products/typo-logo-tyvek-tote-bag');
+                                         },
+                                       child:  SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc6.png', // Path to your image
+                                            'assets/picc6.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -978,14 +1251,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                            // เปิดลิงก์เมื่อรูปถูกคลิก
+                            launch('https://www.wearepomme.com/shop/tops/tee/');
+                                    },
+                                        child:SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc7.png', // Path to your image
+                                            'assets/picc7.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -1016,14 +1295,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                                  // เปิดลิงก์เมื่อรูปถูกคลิก
+                                    launch('https://treetribe.com/pages/leaf-leather');
+                                         },
+                                       child:  SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc8.png', // Path to your image
+                                            'assets/picc8.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -1083,14 +1368,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                               // เปิดลิงก์เมื่อรูปถูกคลิก
+                              launch('https://www.adidas.co.th/th/marimekko');
+                                    },
+                                       child:  SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc9.png', // Path to your image
+                                            'assets/picc9.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -1121,14 +1412,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                                     // เปิดลิงก์เมื่อรูปถูกคลิก
+                                        launch('https://www.em-bike.com/em-eco.html');
+                                              },
+                                        child:SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc10.png', // Path to your image
+                                            'assets/picc10.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -1159,14 +1456,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                                  // เปิดลิงก์เมื่อรูปถูกคลิก
+                                  launch('https://kurma-yoga.com/');
+                                       },
+                                       child:  SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc11.png', // Path to your image
+                                            'assets/picc11.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -1197,14 +1500,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                              // เปิดลิงก์เมื่อรูปถูกคลิก
+                                 launch('https://www.irontec.co/%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A3%E0%B8%A2%E0%B8%B2%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B8%81%E0%B8%B3%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A2-exercise-bike/');
+                                   },
+                            child:SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc12.png', // Path to your image
+                                            'assets/picc12.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -1264,14 +1573,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                                    // เปิดลิงก์เมื่อรูปถูกคลิก
+                                    launch('https://shop.line.me/@qualydesign/product/1004323236');
+                                    },
+                                    child:SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc13.png', // Path to your image
+                                            'assets/picc13.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -1302,14 +1617,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                               // เปิดลิงก์เมื่อรูปถูกคลิก
+                                launch('https://qualydesign.com/international/shop/all-products/save-turtle-soap-tray/');
+                                  },
+                                child:SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc14.png', // Path to your image
+                                            'assets/picc14.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -1340,14 +1661,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                                // เปิดลิงก์เมื่อรูปถูกคลิก
+                                     launch('https://www.instagram.com/eightsaday/reel/C4YK_1JPgm0/');
+                                     },
+                                  child:SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc15.png', // Path to your image
+                                            'assets/picc15.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here
@@ -1378,14 +1705,20 @@ class _RewardPageState extends State<RewardPage> with SingleTickerProviderStateM
                                     ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                    GestureDetector(
+                                    onTap: () {
+                                   // เปิดลิงก์เมื่อรูปถูกคลิก
+                                        launch('https://salahmade.com/artisan/bope-th/');
+                                      },
+                                    child:SizedBox(
                                           width: double.infinity,
                                           height: 100, // Set the height of the button
                                           child: Image.asset(
-                                            'assets/images/picc16.png', // Path to your image
+                                            'assets/picc16.png', // Path to your image
                                             fit: BoxFit.cover, // Ensure the image covers the entire space
                                           ),
                                         ),
+                                    ),
                                         SizedBox(height: 5),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8.0), // Adjust the bottom padding here

@@ -23,7 +23,7 @@ class _PageThreeState extends State<PageThree> {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.all(0),
           child: Column(
@@ -32,14 +32,14 @@ class _PageThreeState extends State<PageThree> {
               const SizedBox(height: 30),
               Row(
                 children: [
-                  Image.asset('lib/images/b-left.png'),
+                  Image.asset('assets/b-left.png'),
                   const SizedBox(width: 1),
-                  Image.asset('lib/images/b1.png'),
+                  Image.asset('assets/b1.png'),
                   const SizedBox(width: 1),
-                  Image.asset('lib/images/b2.png'),
+                  Image.asset('assets/b2.png'),
                   const SizedBox(width: 190),
                   Spacer(),
-                  Image.asset('lib/images/Group 23.png'),
+                  Image.asset('assets/Group 23.png'),
                   const SizedBox(width: 15),
                 ],
               ),
@@ -51,7 +51,7 @@ class _PageThreeState extends State<PageThree> {
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     color: Colors.green,
-                    fontFamily: 'YourFontFamily',
+                    fontFamily: 'MyBinnyFont',
                   ),
                 ),
               ),
@@ -153,7 +153,7 @@ class _PageThreeState extends State<PageThree> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Image.asset('lib/images/Vector (1).png'),
+                                    Image.asset('assets/Vector (1).png'),
                                   ],
                                 ),
                               ),
