@@ -1,7 +1,9 @@
 import 'package:binny_project_g3/models/barcode_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../model/barcode_model.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key, required this.matchedItem});
@@ -13,6 +15,8 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  final picker = ImagePicker();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,24 +28,26 @@ class _DetailPageState extends State<DetailPage> {
           },
           child: SizedBox(
             width: 70,
-            child: Image.asset('lib/assets/arrow-back.png'),
+            child: Image.asset('assets/arrow-back.png'),
           ),
         ),
         title: Column(
           children: [
             Text(
               widget.matchedItem.name,
-              style: GoogleFonts.ibmPlexSans(
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
+                fontFamily: 'MyBinnyFont',
               ),
             ),
             Text(
               widget.matchedItem.id,
-              style: GoogleFonts.ibmPlexSans(
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.normal,
                 color: Colors.grey,
+                fontFamily: 'MyBinnyFont',
               ),
             ),
           ],
@@ -69,11 +75,15 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: Image.asset(widget.matchedItem.image),
+                  child: widget.matchedItem.image.isEmpty
+                      ? Image.file(File(widget.matchedItem.image2!.path))
+                      : Image.asset(widget.matchedItem.image),
                 ),
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: Column(
@@ -88,18 +98,22 @@ class _DetailPageState extends State<DetailPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 24.0,
+                          fontFamily: 'MyBinnyFont',
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 6),
                         child: SizedBox(
                           width: 30,
-                          child: Image.asset(widget.matchedItem.category),
+                          child: Image.asset(
+                              widget.matchedItem.category.imagePath),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 6,),
+                  const SizedBox(
+                    height: 6,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,6 +123,7 @@ class _DetailPageState extends State<DetailPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 12.0,
+                          fontFamily: 'MyBinnyFont',
                         ),
                       ),
                       Row(
@@ -120,13 +135,14 @@ class _DetailPageState extends State<DetailPage> {
                               fontWeight: FontWeight.normal,
                               fontSize: 12.0,
                               color: Color.fromRGBO(2, 194, 117, 1),
+                              fontFamily: 'MyBinnyFont',
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(7, 2, 0, 0),
                             child: SizedBox(
                               width: 10,
-                              child: Image.asset('lib/assets/next-arrow.png'),
+                              child: Image.asset('assets/next-arrow.png'),
                             ),
                           ),
                         ],
@@ -136,7 +152,9 @@ class _DetailPageState extends State<DetailPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Stack(
@@ -160,18 +178,43 @@ class _DetailPageState extends State<DetailPage> {
                               Expanded(
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(24.0),
-                                  child: Image.asset(
-                                    widget.matchedItem.resource,
-                                    fit: BoxFit.contain,
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      final pickedImage = await ImagePicker()
+                                          .pickImage(source: ImageSource.camera);
+                                      if (pickedImage != null) {
+                                        setState(() {
+                                          widget.matchedItem.resource =
+                                              File(pickedImage.path);
+                                        });
+                                      }
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: SizedBox(
+                                        child: widget.matchedItem.resource != null
+                                            ? AspectRatio(
+                                                aspectRatio: 1 / 1,
+                                                child: Image.file(
+                                                  widget.matchedItem.resource!,
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              )
+                                            : const Icon(
+                                                Icons.add_circle_rounded,
+                                                size: 50,
+                                              ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                              Image.asset('lib/assets/chevrons-right.png'),
+                              Image.asset('assets/chevrons-right.png'),
                               Expanded(
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(24.0),
                                   child: Image.asset(
-                                    widget.matchedItem.method,
+                                    widget.matchedItem.method.imagePath,
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -200,6 +243,7 @@ class _DetailPageState extends State<DetailPage> {
                           'คำแนะนำ: สามารถแยกขยะไปขายกับร้านที่รับซื้อ',
                           style: TextStyle(
                             color: Color.fromRGBO(110, 110, 110, 1),
+                            fontFamily: 'MyBinnyFont',
                             fontSize: 12,
                           ),
                         ),
@@ -209,7 +253,9 @@ class _DetailPageState extends State<DetailPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: Column(
@@ -217,14 +263,17 @@ class _DetailPageState extends State<DetailPage> {
                   const Row(
                     children: [
                       Text(
-                          'ความคิดเห็น',
+                        'ความคิดเห็น',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
+                          fontFamily: 'MyBinnyFont',
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   const Divider(
                     thickness: 1,
                   ),
@@ -234,54 +283,69 @@ class _DetailPageState extends State<DetailPage> {
                         width: 36,
                         height: 36,
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade400.withOpacity(0.4),
-                          borderRadius: BorderRadius.circular(100)
-                        ),
+                            color: Colors.grey.shade400.withOpacity(0.4),
+                            borderRadius: BorderRadius.circular(100)),
                       ),
-                      const SizedBox(width: 8,),
+                      const SizedBox(
+                        width: 8,
+                      ),
                       const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                              'สมชาย สายเสมอ',
+                            'สมชาย สายเสมอ',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
+                              fontFamily: 'MyBinnyFont',
                             ),
                           ),
                           Text(
-                              'ต้องบีบขวดก่อนทิ้งไหมครับ?'
+                              'ต้องบีบขวดก่อนทิ้งไหมครับ?',
+                            style: TextStyle(
+                              fontFamily: 'MyBinnyFont',
+                            ),
                           ),
                         ],
                       )
                     ],
                   ),
-                  const SizedBox(height: 10,),
-                  Row(
-                    children: [
-                      Container(
-                        width: 36,
-                        height: 36,
-                        decoration: BoxDecoration(
-                            color: Colors.grey.shade400.withOpacity(0.4),
-                            borderRadius: BorderRadius.circular(100)
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 120.0),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 36,
+                          height: 36,
+                          decoration: BoxDecoration(
+                              color: Colors.grey.shade400.withOpacity(0.4),
+                              borderRadius: BorderRadius.circular(100)),
                         ),
-                      ),
-                      const SizedBox(width: 8,),
-                      const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'สมหญิง สายเสมอ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'สมหญิง สายเสมอ',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'MyBinnyFont',
+                              ),
                             ),
-                          ),
-                          Text(
-                              'ฉลากต้องฉีกออกตลอดไหมคะ?'
-                          ),
-                        ],
-                      )
-                    ],
+                            Text(
+                                'ฉลากต้องฉีกออกตลอดไหมคะ?',
+                              style: TextStyle(
+                                fontFamily: 'MyBinnyFont',
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -292,4 +356,3 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 }
-

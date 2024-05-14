@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:binny_project_g3/page_one.dart';
 import 'package:binny_project_g3/page_two.dart'; // Import page_two.dart
 import 'page_three.dart'; // Import page_three.dart หรือไฟล์ที่เกี่ยวข้อง
-import 'package:binny_project_g3/page_one.dart'; // เพิ่ม Pageone
+import 'package:binny_project_g3/page_three_one.dart';
+// เพิ่ม Pageone
 
 class PageThree extends StatefulWidget {
-  const PageThree({super.key});
+  const PageThree({Key? key}) : super(key: key);
 
   @override
   _PageThreeState createState() => _PageThreeState();
@@ -13,6 +15,18 @@ class PageThree extends StatefulWidget {
 class _PageThreeState extends State<PageThree> {
   int _selectedIndex = 0;
   FocusNode _focusNode = FocusNode();
+  TextEditingController _textController = TextEditingController();
+  late final String message;
+
+  List<String> imageUrls = [
+    'assets/images/1women.png',
+    // เพิ่มรูปภาพอื่น ๆ ตามต้องการ
+  ];
+  List<String> names = [
+    'Matalada',
+    // เพิ่มชื่ออื่น ๆ ตามต้องการ
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +46,22 @@ class _PageThreeState extends State<PageThree> {
               const SizedBox(height: 30),
               Row(
                 children: [
-                  Image.asset('assets/b-left.png'),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PageOne()), // เปลี่ยนเป็นหน้าที่ต้องการไป
+                      );
+                    },
+                    child: Image.asset('assets/images/b-left.png'),
+                  ),
                   const SizedBox(width: 1),
-                  Image.asset('assets/b1.png'),
+                  Image.asset('assets/images/b1.png'),
                   const SizedBox(width: 1),
-                  Image.asset('assets/b2.png'),
+                  Image.asset('assets/images/b2.png'),
                   const SizedBox(width: 190),
                   Spacer(),
-                  Image.asset('assets/Group 23.png'),
+                  Image.asset('assets/images/Group 23.png'),
                   const SizedBox(width: 15),
                 ],
               ),
@@ -51,7 +73,7 @@ class _PageThreeState extends State<PageThree> {
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     color: Colors.green,
-                    fontFamily: 'MyBinnyFont',
+                    fontFamily: 'YourFontFamily',
                   ),
                 ),
               ),
@@ -100,21 +122,14 @@ class _PageThreeState extends State<PageThree> {
                                   });
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            PageOne()), //เปลี่ยนเป็น pageone
+                                    MaterialPageRoute(builder: (context) => page_one_2()), //เปลี่ยนเป็น pageone
                                   );
                                 },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    'สำหรับฉัน',
-                                    style: TextStyle(
-                                      color: _selectedIndex == 0
-                                          ? Colors.black
-                                          : Colors.green,
-                                      fontSize: 14,
-                                    ),
+                                child: Text(
+                                  'สำหรับฉัน',
+                                  style: TextStyle(
+                                    color: _selectedIndex == 0 ? Colors.black : Colors.green,
+                                    fontSize: 16,
                                   ),
                                 ),
                               ),
@@ -126,53 +141,40 @@ class _PageThreeState extends State<PageThree> {
                                   });
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(
-                                        builder: (context) => PageThree()),
+                                    MaterialPageRoute(builder: (context) => PageThree()),
                                   );
                                 },
                                 child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 4),
+                                  padding: const EdgeInsets.only(bottom: 5),
                                   child: Text(
                                     'กระทู้ของฉัน',
                                     style: TextStyle(
-                                      color: _selectedIndex == 1
-                                          ? Colors.grey[500]
-                                          : Colors.green,
+                                      color: _selectedIndex == 1 ? Colors.black : Colors.green,
                                       decoration: TextDecoration.underline,
                                       decorationThickness: 2,
                                       decorationColor: Colors.green,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ),
                               ),
                               Transform.translate(
-                                offset: const Offset(155.0,
-                                    10.0), // ขยับรูปภาพไปทางขวา 20 และลงด้านล่าง 30
+                                offset: Offset(135.0, 10.0), // ขยับรูปภาพไปทางขวา 20 และลงด้านล่าง 30
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Image.asset('assets/Vector (1).png'),
+                                    Image.asset('assets/images/Vector (1).png'),
                                   ],
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        const SizedBox(
-                            height:
-                                200), // Add space between button row and next content
+                        SizedBox(height: 200), // Add space between button row and next content
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
-                              'คุณยังไม่เคยตั้งกระทู้..',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[300],
-                              ),
-                            ),
                             SizedBox(height: 10), // Add space between text
                             Text(
                               'มาเริ่มตั้งกระทู้กันเลย!',
@@ -181,22 +183,59 @@ class _PageThreeState extends State<PageThree> {
                                 color: Colors.grey[700],
                               ),
                             ),
-                            SizedBox(
-                                height:
-                                    10), // Add space between text and button
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              padding: EdgeInsets.all(8),
-                              width: 250,
-                              child: Center(
-                                child: Text(
-                                  'เขียนกระทู้คำถามของคุณ',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
+                            SizedBox(height: 10), // Add space between text and button
+                            GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("เขียนกระทู้คำถามของคุณ"),
+                                      content: SingleChildScrollView(
+                                        child: TextField(
+                                          controller: _textController,
+                                          decoration: InputDecoration(hintText: "พิมพ์ข้อความที่นี่..."),
+                                        ),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            // สร้างข้อมูลที่ต้องการส่งไปยังหน้าต่อไป
+                                            Map<String, dynamic> data = {
+                                              'imageUrls': imageUrls,
+                                              'names': names,
+                                              'message': _textController.text,
+                                            };
+
+                                            // เปิดหน้าต่อไปและส่งข้อมูล
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => PageThreeOne(data: data),
+                                              ),
+                                            );
+                                          },
+                                          child: Text("ตกลง"),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                padding: EdgeInsets.all(8),
+                                width: 250,
+                                child: Center(
+                                  child: Text(
+                                    'เขียนกระทู้คำถามของคุณ',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
                               ),

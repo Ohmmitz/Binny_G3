@@ -1,28 +1,25 @@
-import 'package:binny_project_g3/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Your App Title',
-      theme: ThemeData(
-        primarySwatch: Colors.green, // Example theme
-      ),
-      home: AddressConfirmation(multipliedData: {},), // Your starting page
-    );
-  }
-}
+import 'locationshop.dart';
+import 'mapmain.dart';
 
 class AddressConfirmation extends StatelessWidget {
-  final Map<String, double> multipliedData;
+  final List<String> selectedProductNames;
+  final List<double> selectedWeights;
+  final List<double> prices;
+  final Shop shop;
+  final List<String> selectedImagePaths;
+  final double totalPrice;
+  AddressConfirmation({
+    Key? key,
+    required this.selectedProductNames,
+    required this.selectedWeights,
+    required this.prices,
+    required this.shop,
+    required this.selectedImagePaths,
+    required this.totalPrice,
+  }) : super(key: key);
 
-  AddressConfirmation({required this.multipliedData});
 
   TextEditingController addressController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -41,7 +38,7 @@ class AddressConfirmation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('กรอกข้อมูล'),
+        title: Text(shop.name),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -57,112 +54,100 @@ class AddressConfirmation extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(20),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
               ),
               child: Column(
                 children: [
-                  TextField(
-                    controller: addressController,
-                    decoration: InputDecoration(
-                      hintText: 'ที่อยู่',
-                      prefixIcon: Icon(Icons.location_pin, color: Colors.green),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent), // กำหนดให้ไม่มีขอบสีขาว
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      enabledBorder: OutlineInputBorder( // เส้นขอบเมื่อไม่ได้รับการเน้น
-                        borderSide: BorderSide(color: Colors.green), // กำหนดสีเส้นขอบเป็นสีเขียว
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                  Material(
+                    elevation: 4.0, // เพิ่ม elevation เพื่อให้มีเงา
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0), // กำหนดรูปร่างเป็นวงกลม
                     ),
-                  ),
-                  SizedBox(height: 10),
-                  TextField(
-                    controller: nameController,
-                    decoration: InputDecoration(
-                      hintText: 'ชื่อผู้ชาย',
-                      prefixIcon: Icon(Icons.person, color: Colors.green),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  TextField(
-                    controller: phoneNumberController,
-                    decoration: InputDecoration(
-                      hintText: 'เบอร์โทรศัพท์ที่ติดต่อได้',
-                      prefixIcon: Icon(Icons.phone, color: Colors.green),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    keyboardType: TextInputType.phone,
-                  ),
-                  SizedBox(height: 10),
-                  Padding(
-                    padding: EdgeInsets.all(8),
                     child: TextField(
-                      controller: dateController,
+                      controller: addressController,
                       decoration: InputDecoration(
-                        labelText: 'เลือกวันที่สะดวกให้เข้ารับ',
-                        prefixIcon: Icon(Icons.calendar_today, color: Colors.green),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.green),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                          contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 20)
+                        hintText: 'ที่อยู่',
+                        prefixIcon: Icon(Icons.location_pin, color: Colors.green),
+                        border: InputBorder.none, // กำหนดให้ไม่มีขอบ
+                        contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), // ปรับขนาดกล่องข้อความ
                       ),
-                      readOnly: true,
+                      style: TextStyle(fontSize: 14.0),
+                    ),
+                  ),
+
+                  SizedBox(height: 10),
+                  Material(
+                    elevation: 4.0, // เพิ่ม elevation เพื่อให้มีเงา
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0), // กำหนดรูปร่างเป็นวงกลม
+                    ),
+                    child: TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        hintText: 'ชื่อ',
+                        prefixIcon: Icon(Icons.person, color: Colors.green),
+                        border: InputBorder.none, // กำหนดให้ไม่มีขอบ
+                        contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), // ปรับขนาดกล่องข้อความ
+                      ),
+                      style: TextStyle(fontSize: 14.0),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Material(
+                    elevation: 4.0, // เพิ่ม elevation เพื่อให้มีเงา
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0), // กำหนดรูปร่างเป็นวงกลม
+                    ),
+                    child: TextField(
+                      controller: phoneNumberController,
+                      decoration: InputDecoration(
+                        hintText: 'เบอร์โทรศัพท์ที่ติดต่อได้',
+                        prefixIcon: Icon(Icons.phone, color: Colors.green),
+                        border: InputBorder.none, // กำหนดให้ไม่มีขอบ
+                        contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), // ปรับขนาดกล่องข้อความ
+                      ),
+                      style: TextStyle(fontSize: 14.0),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Material(
+                    elevation: 4.0, // เพิ่ม elevation เพื่อให้มีเงา
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0), // กำหนดรูปร่างเป็นวงกลม
+                    ),
+                    child: InkWell(
                       onTap: () {
                         _selectDate(context);
                       },
-                    ),
-                  ),
-                  Text(
-                    'ประเภทขยะ',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 20.0),
-                  // แสดงข้อมูลที่ได้รับจาก ShopDetailPage
-                  for (var entry in multipliedData.entries)
-                    Text('${entry.key}: ${entry.value}'),
-                  SizedBox(height: 10),
-                  Text(
-                    'รายรับทั้งหมด : ${calculateTotal(multipliedData)} บาท',
-                    style: TextStyle(
-                      fontSize: 20.0,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                        child: Row(
+                          children: <Widget>[
+                            Icon(Icons.calendar_today, color: Colors.green),
+                            SizedBox(width: 10),
+                            Text(
+                              'เลือกวันที่สะดวกให้เข้ารับ',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    "ค่าบริการ 10 บาท",
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  SizedBox(height: 10),
+
                   ElevatedButton(
                     onPressed: () {
                       // ตรวจสอบว่าข้อมูลไม่ว่างเปล่าทั้งหมดก่อนที่จะยืนยัน
@@ -179,11 +164,16 @@ class AddressConfirmation extends StatelessWidget {
                               name: nameController.text,
                               phoneNumber: phoneNumberController.text,
                               selectedDate: dateController.text,
-                              typesOfWaste: multipliedData,
-                              totalIncome: calculateTotal(multipliedData),
+                              shop: shop,
+                              selectedProductNames: selectedProductNames,
+                              selectedWeights: selectedWeights,
+                              prices: prices,
+                              selectedImagePaths: selectedImagePaths,
+                              totalPrice: totalPrice,
                             ),
                           ),
                         );
+
                       } else {
                         // แจ้งเตือนให้ใส่ข้อมูลให้ครบถ้วน
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -206,6 +196,7 @@ class AddressConfirmation extends StatelessWidget {
         ),
       ),
     );
+
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -235,39 +226,63 @@ class ConfirmationPage extends StatelessWidget {
   final String name;
   final String phoneNumber;
   final String selectedDate;
-  final Map<String, double> typesOfWaste;
-  final double totalIncome;
+  final Shop shop;
+  final List<String> selectedProductNames;
+  final List<double> selectedWeights; // เพิ่มน้ำหนักที่เลือก
+  final List<double> prices;
+  final List<String> selectedImagePaths;
+  final double totalPrice;
 
   ConfirmationPage({
     required this.address,
     required this.name,
     required this.phoneNumber,
     required this.selectedDate,
-    required this.typesOfWaste,
-    required this.totalIncome,
+    required this.shop,
+    required this.selectedProductNames,
+    required this.selectedWeights,
+    required this.prices,
+    required this.selectedImagePaths,
+    required this.totalPrice,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ยืนยันข้อมูล'),
+        title: Text(shop.name),
       ),
       body: ListView(
         children: [
-          SizedBox(height: 50,),
-          Image.asset(
-            'assets/c1.png',
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
+          Stack(
+            children: [
+              Image.asset(
+                shop.img,
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.cover,
+              ),
+              Positioned(
+                bottom: 10, // เปลี่ยนจาก top เป็น bottom
+                left: 10,
+                child: Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    'นัดรับ $selectedDate',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
           SizedBox(height: 10),
-          Image.asset(
-            'assets/c4.png',
-            width: 356,
-            height: 90,
-            fit: BoxFit.cover,
-          ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             margin: EdgeInsets.all(20),
@@ -279,8 +294,8 @@ class ConfirmationPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 42, vertical: 10),
+                  margin: EdgeInsets.symmetric(horizontal: 1, vertical: 10),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -294,165 +309,78 @@ class ConfirmationPage extends StatelessWidget {
                     ],
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'ประเภทขยะและจำนวน',
+                        'ประเภทขยะรีไซเคิล',
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          shadows: [
-                            Shadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              offset: Offset(0, 2),
-                              blurRadius: 2,
-                            ),
-                          ],
                         ),
                       ),
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          for (var entry in typesOfWaste.entries)
+                          for (int i = 0; i < selectedProductNames.length; i++)
                             Text(
-                              '${entry.key}: ${entry.value}',
+                              '${selectedProductNames[i]} - ${selectedWeights[i]} kg', // แสดงชื่อสินค้าและน้ำหนัก
                               style: TextStyle(
                                 fontSize: 16,
-                                shadows: [
-                                  Shadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    offset: Offset(0, 2),
-                                    blurRadius: 2,
-                                  ),
-                                ],
                               ),
                             ),
-                          Divider(),
+                        ],
+                      ),
+                      Divider(),
+                      Text('รายละเอียดผู้ส่ง' ,textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.location_pin,color: Colors.green,),
+                          SizedBox(width: 8), // ระยะห่างระหว่างไอคอนกับข้อความ
                           Text(
-                            '           รายละเอียดผู้ส่ง',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  offset: Offset(0, 2),
-                                  blurRadius: 2,
-                                ),
-                              ],
-                            ),
+                            '   $address',
+                            style: TextStyle(fontSize: 16),
                           ),
-                          Divider(),
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.person,color: Colors.green,),
+                          SizedBox(width: 8), // ระยะห่างระหว่างไอคอนกับข้อความ
                           Text(
-                            'ที่อยู่ ',
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  offset: Offset(0, 2),
-                                  blurRadius: 2,
-                                ),
-                              ],
-                            ),
+                            '   $name',
+                            style: TextStyle(fontSize: 16),
                           ),
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.person,color: Colors.green,),
+                          SizedBox(width: 8), // ระยะห่างระหว่างไอคอนกับข้อความ
                           Text(
-                             address,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  offset: Offset(0, 2),
-                                  blurRadius: 2,
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Divider(),
-                          Text(
-                            'ชื่อผู้ขาย ',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  offset: Offset(0, 2),
-                                  blurRadius: 2,
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          Text(
-                             name,
-                            style: TextStyle(
-                              fontSize: 16,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  offset: Offset(0, 2),
-                                  blurRadius: 2,
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Divider(),
-                          Text(
-                            'เบอร์โทรศัพท์ ',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  offset: Offset(0, 2),
-                                  blurRadius: 2,
-                                ),
-                              ],
-                            ),
-                          ),
-                          Text(
-                             phoneNumber,
-                            style: TextStyle(
-                              fontSize: 16,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  offset: Offset(0, 2),
-                                  blurRadius: 2,
-                                ),
-                              ],
-                            ),
+                            '   $phoneNumber',
+                            style: TextStyle(fontSize: 16),
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-
-
                 SizedBox(height: 10),
-
               ],
             ),
           ),
-          SizedBox(height: 10),
-          // ส่วนที่ 1: ที่อยู่, ชื่อผู้ขาย, เบอร์โทร
-          Divider(),
-          // เส้นแบ่งส่วน
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 75, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 100),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -460,22 +388,11 @@ class ConfirmationPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('นัดรับ ',style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold
-                ),),
-                Text(selectedDate,style: TextStyle(
-                  fontSize: 16
-                ),),
-                Text('รายรับทั้งหมด \n     $totalIncome บาท',
-                  textAlign: TextAlign.start,style: TextStyle(
-                    fontSize: 18,fontWeight: FontWeight.bold,
-                  ),),
               ],
             ),
           ),
-          Divider(),
-          // เส้นแบ่งส่วน
+
+
           Container(
             padding: EdgeInsets.all(10),
             child: Column(
@@ -490,32 +407,268 @@ class ConfirmationPage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(width: 20),
-              InkWell(
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) =>  Homescreen()), // นี่คือหน้ายืนยันข้อมูลของคุณ
-                  );
-
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(20),
+          InkWell(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Garbagetruck(
+                    address: address,
+                    name: name,
+                    phoneNumber: phoneNumber,
+                    selectedDate: selectedDate,
+                    shop: shop,
+                    selectedProductNames: selectedProductNames,
+                    selectedWeights: selectedWeights,
+                    prices: prices,
+                    selectedImagePaths: selectedImagePaths,
+                    totalPrice: totalPrice,
                   ),
-                  child: Text('ยืนยัน', style: TextStyle(fontSize: 18,color: Colors.white)),
+                ),
+              );
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Center(
+                child: Text(
+                  'เรียกรถมารับขยะ',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
-            ],
+            )
+
           ),
+
         ],
       ),
     );
   }
-
 }
+
+class Garbagetruck extends StatelessWidget {
+  final String address;
+  final String name;
+  final String phoneNumber;
+  final String selectedDate;
+  final Shop shop;
+  final List<String> selectedProductNames;
+  final List<double> selectedWeights;
+  final List<double> prices;
+  final List<String> selectedImagePaths;
+  final double totalPrice;
+
+  Garbagetruck({
+    required this.address,
+    required this.name,
+    required this.phoneNumber,
+    required this.selectedDate,
+    required this.shop,
+    required this.selectedProductNames,
+    required this.selectedWeights,
+    required this.prices,
+    required this.selectedImagePaths,
+    required this.totalPrice,
+  });
+
+  // คำนวณรายรับทั้งหมด
+  double calculateTotalRevenue() {
+    double totalRevenue = 0;
+    for (int i = 0; i < selectedProductNames.length; i++) {
+      totalRevenue += prices[i] * selectedWeights[i];
+    }
+    return totalRevenue;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(shop.name),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // เมื่อปุ่มถูกกด จะย้อนกลับไปหน้าที่แล้ว
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.cancel), // ใช้ไอคอน cancel หรือไอคอนอื่น ๆ ตามที่ต้องการ
+            onPressed: () {
+              // รายละเอียดเกี่ยวกับการยกเลิก
+              // เก็บข้อมูลรายได้ทั้งหมด, รูปภาพร้านค้า, และชื่อร้านค้าในรูปแบบ List<Map>
+              List<Map<String, dynamic>> revenueList = [];
+              for (int i = 0; i < selectedProductNames.length; i++) {
+                Map<String, dynamic> revenueData = {
+                  'totalRevenue': prices[i] * selectedWeights[i],
+                  'shopName': shop.name,
+                  'shopImage': shop.img,
+                };
+                revenueList.add(revenueData);
+              }
+
+              // แสดงผลใน ListView.builder
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('รายได้ทั้งหมด'),
+                    content: Container(
+                      width: double.maxFinite,
+                      height: 200,
+                      child: ListView.builder(
+                        itemCount: revenueList.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: Image.asset(revenueList[index]['shopImage']),
+                            title: Text(revenueList[index]['shopName']),
+                            subtitle: Text('รายได้: ${revenueList[index]['totalRevenue']} บาท'),
+                          );
+                        },
+                      ),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('ปิด'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch, // จัดให้ Column ขยายตามทั้งแนวตั้งและแนวนอน
+          children: [
+            Stack(
+              children: [
+                Image.asset(
+                  shop.img, // เปลี่ยนเป็นตำแหน่งของรูปร้านของคุณ
+                  width: double.infinity, // ทำให้รูปขยายตามขนาดของหน้าจอ
+                  fit: BoxFit.cover,
+                ),
+                Positioned(
+                  bottom: 10,
+                  left: 8.0,
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5), // กำหนดสีพื้นหลังเป็นสีดำด้วยความโปร่งใส
+                    padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    child: Text(
+                      shop.name, // เปลี่ยนเป็นข้อความที่ต้องการแสดง
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Image.asset(
+                  'assets/c1.png', // เปลี่ยนเป็นตำแหน่งของรูปร้านของคุณ
+                  width: double.infinity, // ทำให้รูปขยายตามขนาดของหน้าจอ
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(height: 10,),
+                Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start, // จัดตำแหน่งของผู้ซื้อไปอยู่ด้านซ้าย
+                    children: [
+                      Text(
+                        '  ผู้รับซื้อ',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10,),
+                      Image.asset(
+                        'assets/c4.png',
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: selectedProductNames.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      elevation: 4, // เพิ่มเงาให้กับ Card
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0), // ปรับรูปร่างของ Card
+                      ),
+                      child: ListTile(
+                        contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0), // ปรับระยะห่างของ ListTile
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0), // ปรับรูปร่างของรูปภาพ
+                          child: Image.asset(
+                            selectedImagePaths[index],
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        title: Text(
+                          selectedProductNames[index],
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(
+                          'น้ำหนัก: ${selectedWeights[index]} kg',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        trailing: Text(
+                          'ราคารวม: ${(prices[index] * selectedWeights[index]).toStringAsFixed(2)} บาท',
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+            // แสดงรายรับทั้งหมด
+            // ปุ่มกลับไปยังหน้าแรก
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Listshop()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  foregroundColor: Colors.white,
+                ),
+                child: Text('กลับหน้าหลัก'),
+              ),
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+

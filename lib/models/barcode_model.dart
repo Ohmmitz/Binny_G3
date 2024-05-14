@@ -1,11 +1,28 @@
+import 'dart:io';
+
+class Category {
+  final String name;
+  final String imagePath;
+
+  Category({required this.name, required this.imagePath});
+}
+
+class Method {
+  final String name;
+  final String imagePath;
+
+  Method({required this.name, required this.imagePath});
+}
+
 class Item {
-  String id;
-  String image;
-  String name;
-  String type;
-  String category;
-  String resource;
-  String method;
+  final String id;
+  final String image;
+  final String name;
+  final String type;
+  final Category category;
+  final Method method;
+  File? resource;
+  File? image2;
 
   Item({
     required this.id,
@@ -13,8 +30,9 @@ class Item {
     required this.name,
     required this.type,
     required this.category,
-    required this.resource,
     required this.method,
+    this.resource,
+    this.image2,
   });
 }
 

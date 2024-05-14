@@ -1,8 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'address.dart';
 import 'locationshop.dart';
+import 'mapmain.dart';
+
+class DisplayWeightPage extends StatelessWidget {
+  final List<String> productNames;
+  final List<double> weights;
+  final List<double> prices;
+
+  DisplayWeightPage(this.productNames, this.weights, this.prices);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('น้ำหนัก'),
+      ),
+      body: ListView.builder(
+        itemCount: productNames.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text('สินค้า: ${productNames[index]}'),
+            subtitle: Text('น้ำหนัก: ${weights[index]} กิโลกรัม'),
+            trailing: Text('ราคา/กก: ${prices[index]} บาท'),
+          );
+        },
+      ),
+    );
+  }
+}
 
 class ShopDetailPage extends StatefulWidget {
   final Shop shop;
@@ -14,41 +40,55 @@ class ShopDetailPage extends StatefulWidget {
 }
 
 class _ShopDetailPageState extends State<ShopDetailPage> {
-  List<String> selectedItems = [];
-  Map<String, String> itemData = {};
-  Map<String, String> itemLabels = {
-    "ขวดน้ำใส PET": "ขวดน้ำใส PET",
-    "ขวดแก้ว": "ขวดแก้ว",
-    "น้ำมันพืชใช้แล้ว": "น้ำมันพืชใช้แล้ว",
-    "กระป๋องอะลูมิเนียม": "กระป๋องอะลูมิเนียม",
-    "พลาสติกแข็ง HDPE": "พลาสติกแข็ง HDPE",
-    "อุปกรณ์อิเล็กทรอนิกส์": "อุปกรณ์อิเล็กทรอนิกส์",
-    "พลาสติก": "พลาสติก",
-    "กระดาษ": "กระดาษ",
-    "กล่องเครื่องดื่ม UHT": "กล่องเครื่องดื่ม UHT",
-    "เสื้อผ้า": "เสื้อผ้า",
-    "ถุงขนม/ถุงกาแฟ": "ถุงขนม/ถุงกาแฟ",
-    "กระป๋องเหล็ก สังกะสีปี๊ป": "กระป๋องเหล็ก สังกะสีปี๊ป",
-  };
+  List<String> imagePaths = [
+    'assets/image_0.png',
+    'assets/image_1.png',
+    'assets/image_2.png',
+    'assets/image_3.png',
+    'assets/image_4.png',
+    'assets/image_5.png',
+    'assets/image_6.png',
+    'assets/image_7.png',
+    'assets/image_8.png',
+    'assets/image_9.png',
+    'assets/image_10.png',
+    'assets/image_11.png',
+  ];
+  List<String> productNames = [
+    'กล่องเครื่องดื่ม UHT',
+    'กระป๋องอะลูมิเนียม',
+    'ขวดน้ำใส PET',
+    'เสื้อผ้า',
+    'อุปกรณ์อิเล็กทรอนิกส์',
+    'ขวดแก้ว',
+    'น้ำมันพืชใช้แล้ว',
+    'กระดาษ',
+    'พลาสติก',
+    'ถุงขนม/ถุงกาแฟ',
+    'พลาสติกแข็ง HDPE',
+    'กระป๋องเหล็ก สังกะสีปี๊ป',
+  ];
+  List<double> prices = [
+    1.2,
+    1.2,
+    0.5,
+    2.0,
+    1.5,
+    0.7,
+    0.9,
+    0.8,
+    1.0,
+    0.3,
+    1.0,
+    1.5,
+  ];
+  List<double> weights = List.generate(12, (index) => 0.0);
+  List<int> selectedImageIndices = [];
+  bool isGridVisible = false;
 
-  bool showCheckboxes = false;
-
-  Map<String, double> itemMultipliers = {
-    "ขวดน้ำใส PET": 0.5,
-    "ขวดแก้ว": 0.7,
-    "น้ำมันพืชใช้แล้ว": 0.9,
-    "กระป๋องอะลูมิเนียม": 1.2,
-    "พลาสติกแข็ง HDPE": 1.0,
-    "อุปกรณ์อิเล็กทรอนิกส์": 1.5,
-    "พลาสติก": 1.0,
-    "กระดาษ": 0.8,
-    "กล่องเครื่องดื่ม UHT": 1.2,
-    "เสื้อผ้า": 2.0,
-    "ถุงขนม/ถุงกาแฟ": 0.3,
-    "กระป๋องเหล็ก สังกะสีปี๊ป": 1.5,
-  };
-
-  Map<String, double> totalPrice = {};
+  double _calculateProductPrice(int index) {
+    return prices[index] * weights[index];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,225 +98,282 @@ class _ShopDetailPageState extends State<ShopDetailPage> {
       ),
       body: Stack(
         children: [
-          Container(
-            child: ListView(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              children: [
-                Stack(
-                  children: [
-                    Image.asset(
-                      widget.shop.img,
-                      width: 400,
-                      height: 300,
-                      fit: BoxFit.cover,
-                    ),
-                    Positioned(
-                      top: 250,
-                      left: 10,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.6),
-                          borderRadius: BorderRadius.circular(5),
+          ListView(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            children: [
+              Stack(
+                children: [
+                  Image.asset(
+                    widget.shop.img,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                  Positioned(
+                    bottom: 10,
+                    left: 10,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.6),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 5,
+                        vertical: 2,
+                      ),
+                      child: Text(
+                        widget.shop.name,
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
                         ),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 5, vertical: 2),
-                        child: Text(
-                          widget.shop.name,
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "เลือกประเภทขยะรีไซเคิล",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isGridVisible = !isGridVisible;
+                            });
+                          },
+                          child: Container(
+                            width: 48,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Colors.green,
+                                width: 2,
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.green,
+                            ),
                           ),
                         ),
+                        SizedBox(width: 10),
+                        // Show selected images
+                        if (selectedImageIndices.isNotEmpty) ...[
+                          Expanded(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: selectedImageIndices.map((index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          imagePaths[index],
+                                          width: 100,
+                                          height: 100,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        SizedBox(height: 4),
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          // Create TextField for each selected image
+                        ],
+                      ],
+                    ),
+                    Container(
+                      child: Column(
+                        children: [
+                          SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: selectedImageIndices.map((index) {
+                                return Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'สินค้า: ${productNames[index]}',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              'ราคา: ${prices[index]} บาท',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(width: 20),
+                                      Expanded(
+                                        flex: 3,
+                                        child: TextField(
+                                          keyboardType: TextInputType.number,
+                                          decoration: InputDecoration(
+                                            hintText: 'ใส่น้ำหนักน้ำหนัก (กิโลกรัม)',
+                                          ),
+                                          onChanged: (text) {
+                                            setState(() {
+                                              try {
+                                                double weight = double.parse(text);
+                                                weights[index] = weight; // Store weight in the list
+                                              } catch (e) {
+                                                print("Invalid double: $text"); // Print error message
+                                              }
+                                            });
+                                          },
+
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "เลือกประเภทขยะรีไซเคิล",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                        ),
-                      ),
-                      Visibility(
-                        visible: showCheckboxes,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            for (var item in shopItems)
-                              CheckboxListTile(
-                                title: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Expanded(child: Text(item)),
-                                    if (selectedItems.contains(item))
-                                      Expanded(
-                                        child: TextFormField(
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter.digitsOnly,
-                                          ],
-                                          keyboardType: TextInputType.number,
-                                          decoration: InputDecoration(
-                                            labelText: itemLabels[item],
-                                            border: OutlineInputBorder(),
-                                          ),
-                                          onChanged: (value) {
-                                            setState(() {
-                                              itemData[item] = value;
-                                              totalPrice[item] = double.parse(value) * (itemMultipliers[item] ?? 0);
-                                            });
-                                          },
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                                value: selectedItems.contains(item),
-                                onChanged: (bool? value) {
-                                  setState(() {
-                                    if (value != null && value) {
-                                      selectedItems.add(item);
-                                    } else {
-                                      selectedItems.remove(item);
-                                      itemData.remove(item);
-                                      totalPrice.remove(item);
-                                    }
-                                  });
-                                },
-                              ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      showCheckboxes = !showCheckboxes;
-                    });
-                  },
-                  child: Text(showCheckboxes ? "ซ่อนประเภทขยะ" : "แสดงประเภทขยะ"),
-                ),
-                if (selectedItems.isNotEmpty) ...[
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    color: Colors.grey.withOpacity(0.1),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "รายละเอียด",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                        for (var item in selectedItems) ...[
-                          SizedBox(height: 10),
-                          Text(
-                            itemLabels[item] ?? "",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+              ),
+            ],
+          ),
+          if (isGridVisible)
+            Positioned.fill(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isGridVisible = false;
+                  });
+                },
+                child: Container(
+                  color: Colors.black.withOpacity(0.5),
+                  child: Center(
+                    child: GridView.count(
+                      crossAxisCount: 3,
+                      children: List.generate(imagePaths.length, (index) {
+                        final isSelected = selectedImageIndices.contains(index);
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              if (isSelected) {
+                                selectedImageIndices.remove(index);
+                              } else {
+                                selectedImageIndices.add(index);
+                              }
+                            });
+                          },
+                          child: Card(
+                            color: isSelected ? Colors.grey : Colors.white,
+                            child: Image.asset(
+                              imagePaths[index],
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          SizedBox(height: 5),
-                          Text(
-                            "ปริมาณ: ${itemData[item] ?? ""} กิโลกรัม",
-                            style: TextStyle(
-                              fontSize: 14,
-                            ),
-                          ),
-                          Text(
-                            "ราคา : ${itemMultipliers[item] ?? ""} กิโลกรัมละ",
-                            style: TextStyle(
-                              fontSize: 14,
-                            ),
-                          ),
-                          Text(
-                            "ยอดสุทธิ์: ${totalPrice[item] ?? 0}",
-                            style: TextStyle(
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ],
+                        );
+                      }),
                     ),
                   ),
-                ],
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(
-                      vertical: 12,
+                ),
+              ),
+            ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: ElevatedButton(
+              onPressed: selectedImageIndices.isNotEmpty && _areWeightsFilled() ? () {
+                List<String> selectedProductNames = [];
+                List<double> selectedWeights = [];
+                for (int i = 0; i < selectedImageIndices.length; i++) {
+                  int index = selectedImageIndices[i];
+                  selectedProductNames.add(productNames[index]);
+                  selectedWeights.add(weights[index]);
+                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddressConfirmation(
+                      selectedProductNames: selectedProductNames,
+                      selectedWeights: selectedWeights,
+                      prices: prices,
+                      shop: widget.shop,
+                      selectedImagePaths: selectedImageIndices.map((index) => imagePaths[index]).toList(),
+                      totalPrice: selectedProductNames.fold<double>(
+                        0,
+                            (previousValue, element) =>
+                        previousValue +
+                            prices[productNames.indexOf(element)] *
+                                weights[productNames.indexOf(element)],
+                      ),
                     ),
                   ),
-                  onPressed: () {
-                    if (selectedItems.isEmpty || itemData.values.any((element) => element.isEmpty)) {
-                      // แสดงข้อความบอกให้กรอกข้อมูลให้ครบถ้วน
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text("ข้อมูลไม่ครบถ้วน"),
-                            content: Text("กรุณาเลือกประเภทขยะและป้อนปริมาณของขยะ"),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text("ตกลง"),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    } else {
-                      Map<String, double> multipliedData = {};
-                      itemData.forEach((key, value) {
-                        if (itemMultipliers.containsKey(key)) {
-                          multipliedData[key] = double.parse(value) * itemMultipliers[key]!;
-                        }
-                      });
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddressConfirmation(multipliedData: multipliedData),
-                        ),
-                      );
-                    }
-                  },
-
-                  child: Text('ตกลง'),
-                ),
-              ],
+                );
+              } : null,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+              ),
+              child: Text('ถัดไป'),
             ),
           ),
         ],
       ),
     );
   }
-}
 
-List<String> shopItems = [
-  "ขวดน้ำใส PET",
-  "ขวดแก้ว",
-  "น้ำมันพืชใช้แล้ว",
-  "กระป๋องอะลูมิเนียม",
-  "พลาสติกแข็ง HDPE",
-  "อุปกรณ์อิเล็กทรอนิกส์",
-  "พลาสติก",
-  "กระดาษ",
-  "กล่องเครื่องดื่ม UHT",
-  "เสื้อผ้า",
-  "ถุงขนม/ถุงกาแฟ",
-  "กระป๋องเหล็ก สังกะสีปี๊ป",
-];
+  // เพิ่มเมท็อดเช็คว่า textfield ทุกตัวมีข้อมูลหรือไม่
+  bool _areWeightsFilled() {
+    for (int index in selectedImageIndices) {
+      if (weights[index] == 0.0) {
+        return false;
+      }
+    }
+    return true;
+  }
+}

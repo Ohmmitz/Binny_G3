@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:binny_project_g3/page_three.dart';
+import 'package:comment_box/comment/comment.dart';
+import 'package:flutter/foundation.dart';
 import 'package:binny_project_g3/page_one.dart';
+import 'package:flutter/material.dart';
+import 'package:binny_project_g3/page_three.dart';
 
 class PageTwo extends StatefulWidget {
   const PageTwo({super.key});
@@ -11,366 +12,349 @@ class PageTwo extends StatefulWidget {
 }
 
 class _PageTwoState extends State<PageTwo> {
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController commentController = TextEditingController();
+  List filedata = [
+    {
+      'name': 'Kungjuju ja',
+      'pic': 'assets/images/girl1.png',
+      'message': 'ประเภทถุงบริจาคที่ GREEN ROAD ค่ะ ส่วนกระป๋องขายซาเล้งได้ค่ะ',
+    },
+    {
+      'name': 'Siri rattana',
+      'pic': 'assets/images/monk1.png',
+      'message': 'ทิ้งไว้ให้แห้งไม่ต้องล้างส่ง N15 #ทีมทำลายให้หายไปค่ะ',
+    },
+    {
+      'name': 'Siri rattana',
+      'pic': 'assets/images/monk1.png',
+      'message': 'กระป๋อง ถ้าไม่ขายก็เก็บรวมๆใส่ถุงวางข้างถังขยะพี่ซาเล้งมาช่วยเก็บไปขายค่ะ',
+    },
+  ];
+
   int _selectedIndex = 0;
-  final FocusNode _focusNode = FocusNode();
+
+  Widget commentChild(data) {
+    return ListView(
+      children: [
+        for (var i = 0; i < data.length; i++)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(2.0, 8.0, 2.0, 0.0),
+            child: ListTile(
+              leading: GestureDetector(
+                onTap: () async {
+                  // Display the image in large form.
+                  if (kDebugMode) {
+                    print("Comment Clicked");
+                  }
+                },
+                child: Container(
+                  height: 50.0,
+                  width: 50.0,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(30))),
+                  child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: CommentBox.commentImageParser(
+                          imageURLorPath: data[i]['pic'])),
+                ),
+              ),
+              title: Text(
+                data[i]['name'],
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+              subtitle: Text(data[i]['message']),
+            ),
+          )
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (!_focusNode.hasPrimaryFocus) {
-          _focusNode.unfocus();
-        }
-      },
-      child: Scaffold(
-        backgroundColor: Colors.grey[100],
-        body: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 50, 50, 0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => PageOne()),
-                      );
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset('assets/b-left.png'),
-                        const SizedBox(width: 8),
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'กระทู้ถามตอบ',
-                              style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Transform.translate(
-                    offset: const Offset(35.0, 1.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Image.asset('assets/Group 23.png'),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(right: 1, left: 4, top: 5), // กำหนดระยะห่างรอบขอบของรูปภาพ
+          child: GestureDetector(
+            onTap: () {
+              // ทำการเปลี่ยนหน้าที่นี่
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PageOne()), // แทน YourNextPage ด้วยหน้าที่ต้องการเปลี่ยนไป
+              );
+            },
+            child: Image.asset('assets/b-left.png', width: 10, height: 30),
+          ),
+        ),
+        title: const Padding(
+          padding: EdgeInsets.only(right: 55), // กำหนดระยะห่างรอบขอบของข้อความ
+          child: Text(
+            'กระทู้ถามตอบ',
+            style: TextStyle(
+              fontSize: 25, // กำหนดขนาดของข้อความ
+              fontWeight: FontWeight.bold, // กำหนดให้ข้อความเป็นตัวหนา
             ),
-
-
-            const SizedBox(height: 5), // ปรับค่าระยะห่างด้านบนน้อยลง
-            Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 1,
-                  width: 600,
-                  color: Colors.white,
-                  // กำหนดพื้นหลังสีขาว
-                  padding: const EdgeInsets.fromLTRB(8, 2, 8, 20),
-                  margin: const EdgeInsets.all(0), // ปรับค่า padding เพื่อขยับข้อความขึ้น
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 0.5,
-                              blurRadius: 10,
-                              offset: const Offset(0, 0),
-                            ),
-                          ],
-                        ),
-                        height: 50,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  _selectedIndex = 0;
-                                });
-                                // Navigate to page one
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => PageTwo()),
-                                );
-                              },
-                              child: Text(
-                                'สำหรับฉัน',
-                                style: TextStyle(
-                                  color: _selectedIndex == 0 ? Colors.green : Colors.black,
-                                  decoration: TextDecoration.underline,
-                                  decorationThickness: 2,
-                                  decorationColor: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 1), // เพิ่มระยะห่างระหว่างปุ่มและรูป
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  _selectedIndex = 1;
-                                });
-                                // Navigate to page three
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => PageThree()),
-                                );
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end, // จัดให้รูปอยู่ทางขวาสุด
-                                children: [
-                                  Text(
-                                    'กระทู้ของฉัน',
-                                    style: TextStyle(
-                                      color: _selectedIndex == 1 ? Colors.green : Colors.black,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  // เพิ่มระยะห่างระหว่างข้อความและรูป
-                                  Transform.translate(
-                                    offset: const Offset(135.0, 3.0), // ขยับรูปภาพไปทางขวา 20 และลงด้านล่าง 30
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Image.asset('assets/Vector (1).png'),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Container(
-                          width: 370,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                color: Colors.grey.shade300,
-                                width: 1.5,
-                              )
+          ),
+        ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 5,right: 10),
+            child: Image.asset('assets/Group 23.png', width: 80, height: 80),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.4),
+                            spreadRadius: 0.5,
+                            blurRadius: 5,
+                            offset: const Offset(0, 0),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Column(
-                                children: [
-                                  Container(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // เพิ่ม property นี้ที่นี่
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Image.asset('assets/men.png'),
-                                            const Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Teewara I.',
-                                                  style: TextStyle(color: Colors.black), // เปลี่ยนสีข้อความเป็นสีฟ้า
+                        ],
+                      ),
+                      height: 50,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                _selectedIndex = 0;
+                              });
+                              // Navigate to page one
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => page_one_2()),
+                              );
+                            },
+                            child: Text(
+                              'สำหรับฉัน',
+                              style: TextStyle(
+                                color: _selectedIndex == 0 ? Colors.green : Colors.black,
+                                decoration: TextDecoration.underline,
+                                decorationThickness: 2,
+                                decorationColor: Colors.green,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 1), // เพิ่มระยะห่างระหว่างปุ่มและรูป
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                _selectedIndex = 1;
+                              });
+                              // Navigate to page three
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PageThree()),
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end, // จัดให้รูปอยู่ทางขวาสุด
+                              children: [
+                                Text(
+                                  'กระทู้ของฉัน',
+                                  style: TextStyle(
+                                    color: _selectedIndex == 1 ? Colors.green : Colors.black,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                const SizedBox(width: 150),
+                                // เพิ่มระยะห่างระหว่างข้อความและรูป
+                                Positioned(
+                                  right: 0,
+                                  top: 8,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => PageThree()),
+                                      );
+                                    },
+                                    child: Image.asset(
+                                      'assets/images/Vector (1).png',
+                                      width: 30,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Container(
+                        width: 600,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                              children: [
+                                Container(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Image.asset(
+                                            'assets/images/Ellipse 78 (1).png',
+                                            width: 55,
+                                            height: 55,
+                                          ),
+                                          SizedBox(width: 10), // กำหนดระยะห่างระหว่างรูปภาพและข้อความ
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Teewara I.',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16,
                                                 ),
-                                                Text(
-                                                  '13:02 | 21 ก.พ. 67 ',
-                                                  style: TextStyle(color: Colors.grey), // เปลี่ยนสีข้อความเป็นสีเขียว
+                                              ),
+                                              Text(
+                                                '2024-02-21 13:02',
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 145),
+                                        child: Row(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Column(
+                                                  children: [
+                                                    Image.asset(
+                                                      'assets/images/Vectore.png',
+                                                      width: 20,
+                                                      height: 20,
+                                                    ),
+                                                    // กำหนดระยะห่างระหว่างไอคอน
+                                                  ],
                                                 ),
                                               ],
                                             ),
                                           ],
                                         ),
-                                        Column(
-                                          children: [
-                                            Image.asset('assets/Vectorw.png'),
-                                            const SizedBox(width: 20, height: 12,), // เพิ่มช่องว่างระหว่างไอคอน
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 10),
-                                  const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text('สอบถามหน่อยครับส่วนตัวเลี้ยงน้องแมวเลยมีขยะพวกถุงอาหารเม็ดถุงอาหารเปียกถุงทรายแมวและกระป๋องอาหารเปียกขยะพวกนี้สามารถส่งไปที่ไหนได้มั้งครับ ขอบคุณครับ                                                                                                   ปล.ถุงทรายแมวกับอาหารเม็ดต้องทำความสะอาดด้วยไหมครับ'
-                                    ),
-                                  ),
-                                  SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Image.asset('assets/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
-                                      SizedBox(width: 1),
-                                      Text('10'),
-                                      SizedBox(width: 2),
-                                      Image.asset('assets/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
-                                      SizedBox(width: 1),
-                                      Text('2'),
-                                      SizedBox(width: 4),
+                                      ),
                                     ],
                                   ),
-                                  Column(
-                                    children: [
-                                      Image.asset('assets/Line 19.png')
-                                    ],
+                                ),
+                                SizedBox(height: 10),
+                                const Padding(
+                                  padding: EdgeInsets.all(2.0),
+                                  child: Text('สอบถามหน่อยครับส่วนตัวเลี้ยงน้องแมวเลยมีขยะพวกถุงอาหารเม็ดถุงอาหารเปียกถุงทรายแมวและกระป๋องอาหารเปียกขยะพวกนี้สามารถส่งไปที่ไหนได้มั้งครับ ขอบคุณครับ                                                                                                   ปล.ถุงทรายแมวกับอาหารเม็ดต้องทำความสะอาดด้วยไหมครับ'
                                   ),
-                                  SizedBox(height: 8),
-                                  Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Image.asset('assets/girl.png'),
-                                        const Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              '  ประเภทถุงบริจาคที่ GREEN ROAD ค่ะ',
-                                              style: TextStyle(
-                                                color: Colors.black, // เปลี่ยนสีข้อความเป็นสีฟ้า
-                                              ),
-                                            ),
-                                            Text(
-                                              '  ส่วนกระป๋องขายซาเล้งได้ค่ะ',
-                                              style: TextStyle(
-                                                color: Colors.black, // เปลี่ยนสีข้อความเป็นสีฟ้า
-                                              ),
-                                            ),
-                                            Text(
-                                              '  reply',
-                                              style: TextStyle(
-                                                color: Colors.green, // เปลี่ยนสีข้อความเป็นสีฟ้า
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                ),
+                                SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Image.asset('assets/images/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
+                                    SizedBox(width: 1),
+                                    Text('10'),
+                                    SizedBox(width: 2),
+                                    Image.asset('assets/images/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
+                                    SizedBox(width: 1),
+                                    Text('2'),
+                                    SizedBox(width: 4),
+                                  ],
+                                ),
+                                SizedBox(height: 20),
+                                Column(
+                                  children: [
+                                    Image.asset(
+                                        'assets/images/Line 19.png'
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Image.asset('assets/Ellipse 782.png'),
-                                        const Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              '  #ทีมทำลายให้หายไปค่ะ กระป๋องรวมๆขายได้ ',
-                                              style: TextStyle(
-                                                color: Colors.black, // เปลี่ยนสีข้อความเป็นสีฟ้า
-                                              ),
-                                            ),
-                                            Text(
-                                              '  ถ้าไม่ขายก็เก็บรวมๆ5-6ป๋องใส่ถุงวางข้างถังขยะ',
-                                              style: TextStyle(
-                                                color: Colors.black, // เปลี่ยนสีข้อความเป็นสีฟ้า
-                                              ),
-                                            ),
-                                            Text(
-                                              '  พี่ซาเล้งมาช่วยเก็บไปขายค่ะ',
-                                              style: TextStyle(
-                                                color: Colors.black, // เปลี่ยนสีข้อความเป็นสีฟ้า
-                                              ),
-                                            ),
-                                            Text(
-                                              '  reply',
-                                              style: TextStyle(
-                                                color: Colors.green, // เปลี่ยนสีข้อความเป็นสีฟ้า
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ]
-                            ),
+                                  ],
+                                ),
 
+
+                              ]
                           ),
-                        ),
-                      )
-                    ],
-                  ),
 
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),
-            Center(
-              child: Container(
-                width: 420, // กำหนดความกว้างของกรอบ
-                height: 100, // กำหนดความสูงของกรอบ
-                decoration: const BoxDecoration(
-                  color: Colors.green, // กำหนดสีของเส้นขอบ
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 25.0), // Set internal padding for the text field
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 50, 1, 1), // กำหนดระยะขอบของ Padding เพื่อขยับตำแหน่ง
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Image.asset('assets/Vector (1).png'),
-                          ],
-                        ),
-                      ),
-
-                      SizedBox(width: 8), // Add space between the text field and the image
-                      Align(
-                        alignment: const Alignment(5.0, 0.5), // Adjust alignment as needed
-                        child: Image.asset('assets/Ellipse 781.png'),
-                      ),
-                      Expanded(
-                        child: TextField(
-                          focusNode: _focusNode,
-                          decoration: InputDecoration(
-                            hintText: '  แสดงความคิดเห็นของคุณ', // Sample text in the text field
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30.0), // Set the shape of the text field border
-                            ),
-                            filled: true,
-                            fillColor: Colors.white, // Set the background color of the text field
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 5), // Add space between the text field and the image
-                      Align(
-                        alignment: const Alignment(10.0, 0.2), // Adjust alignment as needed
-                        child: Image.asset('assets/Frame 334.png'),
-                      ),// Replace 'your_image.png' with the actual image path
-                    ],
+          ),
+          Expanded(
+            flex: 1, // Adjusted flex value
+            child: Column(
+              children: [
+                Expanded(
+                  child: CommentBox(
+                    userImage: CommentBox.commentImageParser(
+                        imageURLorPath: "assets/images/Ellipse 78.png"),
+                    labelText: 'เขียนความคิดเห็น...',
+                    errorText: 'ความคิดเห็นต้องไม่ว่างเปล่า',
+                    withBorder: false,
+                    sendButtonMethod: () {
+                      if (formKey.currentState!.validate()) {
+                        if (kDebugMode) {
+                          print(commentController.text);
+                        }
+                        setState(() {
+                          var value = {
+                            'name': 'Matalada',
+                            'pic':
+                            'assets/images/Ellipse 78.png',
+                            'message': commentController.text,
+                          };
+                          filedata.insert(0, value);
+                        });
+                        commentController.clear();
+                        FocusScope.of(context).unfocus();
+                      } else {
+                        if (kDebugMode) {
+                          print("ไม่ผ่านการตรวจสอบ");
+                        }
+                      }
+                    },
+                    formKey: formKey,
+                    commentController: commentController,
+                    backgroundColor: Colors.green,
+                    textColor: Colors.white,
+                    sendWidget: const Icon(Icons.send_sharp, size: 30, color: Colors.white),
+                    child: commentChild(filedata),
                   ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
+          ),
+          SizedBox(width: 10),
+        ],
       ),
     );
   }

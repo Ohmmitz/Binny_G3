@@ -1,7 +1,9 @@
+import 'package:binny_project_g3/Howto1.dart';
 import 'package:binny_project_g3/Reward.dart';
 import 'package:binny_project_g3/ShopDetailPage1.dart';
 import 'package:binny_project_g3/comunity.dart';
 import 'package:binny_project_g3/homescreen.dart';
+import 'package:binny_project_g3/mapmain.dart';
 import 'package:binny_project_g3/mygarden.dart';
 import 'package:binny_project_g3/page_one.dart';
 import 'package:binny_project_g3/profile.dart';
@@ -14,6 +16,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:binny_project_g3/homescreen.dart';
 import 'package:readmore/readmore.dart';
+import 'package:barcode/barcode.dart';
+import 'package:barcode_widget/barcode_widget.dart';
 
 void main() {
   runApp(Homepage());
@@ -79,15 +83,12 @@ class Homescreen extends StatelessWidget {
           ),
           automaticallyImplyLeading: false,
         ),
-        body: Stack(children: [
-          SingleChildScrollView(
-            child: Stack(
-              children: [
+        body: Stack(children: [     
                 Container(
                   height: MediaQuery.of(context).size.height + 0,
                 ),
                 Positioned(
-                  top: MediaQuery.of(context).size.height / 3.75,
+                  top: MediaQuery.of(context).size.height / 20,
                   bottom: 0,
                   left: 0,
                   right: 0,
@@ -95,9 +96,7 @@ class Homescreen extends StatelessWidget {
                     child: HomeDetail(),
                   ),
                 ),
-              ],
-            ),
-          ),
+              
           Positioned(
             bottom: 22,
             left: 16,
@@ -221,7 +220,7 @@ Widget build(BuildContext context) {
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Soldpage()),
+                  MaterialPageRoute(builder: (context) => Listshop()),
                 );
               },
               child: Column(
@@ -255,7 +254,7 @@ Widget build(BuildContext context) {
                 // Navigate to TrashPage here
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => TrashPage()),
+                  MaterialPageRoute(builder: (context) => Homepoint()),
                 );
               },
               child: Column(
@@ -291,87 +290,174 @@ Widget build(BuildContext context) {
         SizedBox(height: 10),
         Padding(
           padding: EdgeInsets.all(8.0), // Adjust the padding values as needed
-          child: Card(
-            color: Colors.black,
-            child: Padding(
-              padding: EdgeInsets.all(8.0), // Adjust the padding values as needed
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+          child: GestureDetector(
+            onTap: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                content: Card(
+                  color: Colors.black,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0), // Adjust the padding values as needed
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min, // Adjusts the card to wrap its content
+                      children: [
+                        Row(
                           children: [
-                            Text(
-                              'Level 0.01',
-                              style: TextStyle(
-                                fontFamily: 'MyBinnyFont',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
-                                backgroundColor: Color.fromRGBO(2, 194, 117, 15),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Level 0.01',
+                                    style: TextStyle(
+                                      fontFamily: 'MyBinnyFont',
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                      backgroundColor: Color.fromRGBO(2, 194, 117, 15),
+                                    ),
+                                  ),
+                                  Text(
+                                    '#0023412000',
+                                    style: TextStyle(
+                                      fontFamily: 'MyBinnyFont',
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            Text(
-                              '#0023412000',
-                              style: TextStyle(
-                                fontFamily: 'MyBinnyFont',
-                                fontSize: 10,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
-                              ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  'ปริมาณขยะที่ฉันช่วยไว้',
+                                  style: TextStyle(
+                                    fontFamily: 'MyBinnyFont',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  '10.25',
+                                  style: TextStyle(
+                                    fontFamily: 'MyBinnyFont',
+                                    fontSize: 48,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        Divider(),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            BarcodeWidget(
+                              barcode: Barcode.qrCode(), // Change this to the type of barcode you need
+                              data: 'https://flutter.dev', // The data you want to encode
+                              backgroundColor: Colors.white,
+                              width: 200,
+                              height: 200,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        },
+        child: Card(
+          color: Colors.black,
+          child: Padding(
+            padding: EdgeInsets.all(8.0), // Adjust the padding values as needed
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'ปริมาณขยะที่ฉันช่วยไว้',
+                            'Level 0.01',
                             style: TextStyle(
                               fontFamily: 'MyBinnyFont',
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
+                              backgroundColor: Color.fromRGBO(2, 194, 117, 15),
                             ),
                           ),
                           Text(
-                            '10.25',
+                            '#0023412000',
                             style: TextStyle(
                               fontFamily: 'MyBinnyFont',
-                              fontSize: 48,
+                              fontSize: 10,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             ),
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                  Divider(),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.qr_code_scanner_rounded, color: Colors.white),
-                      SizedBox(width: 8), // Adjusted width here
-                      Text(
-                        'สแกนกับร้านรับซื้อขยะที่เข้าร่วม',
-                        style: TextStyle(
-                          fontFamily: 'MyBinnyFont',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          'ปริมาณขยะที่ฉันช่วยไว้',
+                          style: TextStyle(
+                            fontFamily: 'MyBinnyFont',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
                         ),
+                        Text(
+                          '10.25',
+                          style: TextStyle(
+                            fontFamily: 'MyBinnyFont',
+                            fontSize: 48,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Divider(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.qr_code_scanner_rounded, color: Colors.white),
+                    SizedBox(width: 8), // Adjusted width here
+                    Text(
+                      'สแกนกับร้านรับซื้อขยะที่เข้าร่วม',
+                      style: TextStyle(
+                        fontFamily: 'MyBinnyFont',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            // Other card properties as needed
           ),
+        ),
+      ),
         ),
         SizedBox(height: 10),
         Row(
@@ -382,7 +468,7 @@ Widget build(BuildContext context) {
                 // Navigate to another page here
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CommunityPage()),
+                  MaterialPageRoute(builder: (context) => CommuPage()),
                 );
               },
               child: Card(

@@ -1,24 +1,11 @@
+import 'dart:io';
+import 'package:binny_project_g3/homescreen.dart';
 import 'package:binny_project_g3/models/barcode_model.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'detail_page.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Your App Title',
-      theme: ThemeData(
-        primarySwatch: Colors.green, // Example theme
-      ),
-      home:  ScanHomePage(), // Your starting page
-    );
-  }
-}
+import 'scan_detail_page.dart';
+import '../model/barcode_model.dart';
 
 class ScanHomePage extends StatefulWidget {
   const ScanHomePage({Key? key});
@@ -28,32 +15,93 @@ class ScanHomePage extends StatefulWidget {
 }
 
 class _ScanHomePageState extends State<ScanHomePage> {
+  final picker = ImagePicker();
+  String _searchQuery = '';
+
+  late List<Category> categories;
+  late List<Method> methods;
+  late List<Item> items;
+
+  final TextEditingController _idController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _imageController = TextEditingController();
+  final TextEditingController _typeController = TextEditingController();
+
+  File? _pickedImage;
 
   String? scannedBarcode;
   bool _isVisible = false;
 
-  // Define items
-  List<Item> items = [
-    Item(
+  late List<DropdownMenuItem<Category>> categoryItems;
+  Category? selectedCategory;
+  late List<DropdownMenuItem<Method>> methodItems;
+  Method? selectedMethod;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Initialize categories
+    categories = [
+      Category(name: 'ขยะรีไซเติล', imagePath: 'lib/assets/category-recycle.png'),
+      Category(name: 'ขยะทั่วไป', imagePath: 'lib/assets/category-normal.png'),
+      Category(name: 'ขยะอันตราย', imagePath: 'lib/assets/category-danger.png'),
+      Category(name: 'ขยะเปียก', imagePath: 'lib/assets/category-food.png'),
+    ];
+
+    // Initialize methods
+    methods = [
+      Method(name: 'ขวด', imagePath: 'lib/assets/method-bottle.png'),
+      Method(name: 'กระป๋อง', imagePath: 'lib/assets/method-can.png'),
+      Method(name: 'กล่อง', imagePath: 'lib/assets/method-carton.png'),
+      Method(name: 'เครื่องใช้ไฟฟ้า', imagePath: 'lib/assets/method-electronic.png'),
+      Method(name: 'แก้ว', imagePath: 'lib/assets/method-glass.png'),
+      Method(name: 'เหล็ก', imagePath: 'lib/assets/method-metal.png'),
+      Method(name: 'พลาสติก', imagePath: 'lib/assets/method-plastic.png'),
+      Method(name: 'กระป๋องเหล็ก', imagePath: 'lib/assets/baygon-type.png'),
+    ];
+
+    // Initialize items
+    items = [
+      Item(
         id: '8852086001028',
-        image: 'lib/assets/crystal.png',
+        image: 'assets/crystal.png',
         name: 'Crystal',
         type: 'ถังขยะรัไซเคิล',
-        category: 'lib/assets/recycle-icon.png',
-        resource: 'lib/assets/crystal-resource.png',
-        method: 'lib/assets/crystal-type.png',
-    ),
-    Item(
+        category: categories[0], // Use the first category
+        resource: null,
+        image2: null,
+        method: methods[0],
+      ),
+      Item(
         id: '8858998584727',
-        image: 'lib/assets/baygon.png',
-        name: 'Tea Brow sugar',
+        image: 'assets/baygon.png',
+        name: 'Bygon',
         type: 'ถังขยะอันตราย',
-        category: 'lib/assets/danger-icon.png',
-        resource: 'lib/assets/baygon-resource.png',
-        method: 'lib/assets/baygon-type.png',
-    ),
-    // Add more items as needed
-  ];
+        category: categories[2], // Use the third category
+        resource: null,
+        image2: null,
+        method: methods[7],
+      ),
+      // Add more items as needed
+    ];
+
+    // Initialize dropdown menu items for categories
+    categoryItems = categories.map((Category category) {
+      return DropdownMenuItem<Category>(
+        value: category,
+        child: Text(category.name),
+      );
+    }).toList();
+
+    // Initialize dropdown menu items for methods
+    methodItems = methods.map((Method method) {
+      return DropdownMenuItem<Method>(
+        value: method,
+        child: Text(method.name),
+      );
+    }).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +109,13 @@ class _ScanHomePageState extends State<ScanHomePage> {
           (item) => item.id == scannedBarcode,
       orElse: () => Item(
         id: '',
-        image: 'lib/assets/recycle-icon.png',
+        image: 'assets/recycle-icon.png',
         name: '',
         type: '',
-        category: '',
-        resource: '',
-        method: '',
+        category: categories.first,
+        resource: null,
+        image2: null,
+        method: methods[0], // Initialize method to null here
       ),
     );
 
@@ -82,7 +131,164 @@ class _ScanHomePageState extends State<ScanHomePage> {
         backgroundColor: const Color.fromRGBO(246, 249, 253, 1),
         appBar: AppBar(
           centerTitle: true,
-          leading: const Icon(Icons.close),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Homescreen()),
+              );
+            },
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 15.0),
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text(
+                          'เพิ่มสินค้า',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'MyBinnyFont',
+                          ),
+                        ),
+                        elevation: 24.0,
+                        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                        actions: [
+                          ElevatedButton(
+                            onPressed: () async {
+                              final pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
+                              if (pickedFile != null) {
+                                setState(() {
+                                  _pickedImage = File(pickedFile.path);
+                                });
+                              }
+                            },
+                            child: const Text(
+                              'ถ่ายรูป',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'MyBinnyFont',
+                              ),
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                items.add(
+                                  Item(
+                                    id: _idController.text,
+                                    image: _imageController.text,
+                                    image2: _pickedImage, // Store the image path in image2
+                                    name: _nameController.text,
+                                    type: _typeController.text,
+                                    category: selectedCategory ?? categories[0], // Use selectedCategory if available, otherwise use the first category
+                                    method: selectedMethod ?? methods[0], // Use selectedMethod if available, otherwise use the first method
+                                  ),
+                                );
+                                // Clear text field values and image path
+                                _idController.clear();
+                                _nameController.clear();
+                                _typeController.clear();
+                                _pickedImage = null;
+                              });
+                              Navigator.pop(context);
+                            },
+                            child: const Text(
+                                'เพิ่ม',
+                              style: TextStyle(
+                                fontFamily: 'MyBinnyFont',
+                                color: Colors.black
+                              ),
+                            ),
+                          ),
+                        ],
+                        content: SingleChildScrollView(
+                          child: SizedBox(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: _pickedImage != null ? Image.file(_pickedImage!) : Container(),
+                                ),
+                                TextFormField(
+                                  controller: _idController,
+                                  decoration: const InputDecoration(
+                                    labelText: 'รหัสสินค้า',
+                                    labelStyle: TextStyle(
+                                        fontFamily: 'MyBinnyFont',
+                                    ),
+                                  ),
+                                ),
+                                TextFormField(
+                                  controller: _nameController,
+                                  decoration: const InputDecoration(
+                                    labelText: 'ชื่อสินค้า',
+                                    labelStyle: TextStyle(
+                                      fontFamily: 'MyBinnyFont',
+                                    ),
+                                  ),
+                                ),
+                                TextFormField(
+                                  controller: _typeController,
+                                  decoration: const InputDecoration(
+                                    labelText: 'ประเภทถังขยะ',
+                                    labelStyle: TextStyle(
+                                      fontFamily: 'MyBinnyFont',
+                                    ),
+                                  ),
+                                ),
+                                DropdownButtonFormField<Category>(
+                                  value: selectedCategory,
+                                  items: categoryItems,
+                                  onChanged: (Category? value) {
+                                    setState(() {
+                                      selectedCategory = value!;
+                                    });
+                                  },
+                                  decoration: const InputDecoration(
+                                    labelText: 'ประเภทสินค้า',
+                                    labelStyle: TextStyle(
+                                      fontFamily: 'MyBinnyFont',
+                                    ),
+                                  ),
+                                ),
+                                DropdownButtonFormField<Method>(
+                                  value: selectedMethod,
+                                  items: methodItems,
+                                  onChanged: (Method? value) {
+                                    setState(() {
+                                      selectedMethod = value!;
+                                    });
+                                  },
+                                  decoration: const InputDecoration(
+                                    labelText: 'วิธีการ',
+                                    labelStyle: TextStyle(
+                                      fontFamily: 'MyBinnyFont',
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+
+                      );
+                    },
+                  );
+                },
+                child: const Icon(
+                  Icons.add_circle_rounded,
+                  color: Color.fromRGBO(2, 194, 117, 1),
+                ),
+              ),
+            ),
+          ],
           bottom: TabBar(
             splashFactory: NoSplash.splashFactory,
             tabAlignment: TabAlignment.center,
@@ -96,8 +302,18 @@ class _ScanHomePageState extends State<ScanHomePage> {
             indicatorSize: TabBarIndicatorSize.tab,
             labelStyle: const TextStyle(fontWeight: FontWeight.bold),
             tabs: const [
-              Tab(text: 'บาร์โค้ด'),
-              Tab(text: 'รหัสบาร์โค้ด'),
+              Tab(
+                child: Text(
+                  'บาร์โค้ด',
+                  style: TextStyle(fontFamily: 'MyBinnyFont'),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'รหัสบาร์โค้ด',
+                  style: TextStyle(fontFamily: 'MyBinnyFont'),
+                ),
+              ),
             ],
           ),
         ),
@@ -134,7 +350,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
                   ),
                 ),
                 Positioned(
-                  bottom: 20,
+                  bottom: 60,
                   left: 20,
                   right: 20,
                   child: Opacity(
@@ -151,7 +367,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
                             width: 70,
                             height: 70,
                             child: Image.asset(
-                              matchedItem.category,
+                              matchedItem.category.imagePath,
                             ),
                           ),
                           title: Text(
@@ -159,6 +375,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
                             style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
+                              fontFamily: 'MyBinnyFont',
                             ),
                           ),
                           subtitle: Column(
@@ -169,6 +386,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
                                 style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 10,
+                                  fontFamily: 'MyBinnyFont',
                                 ),
                               ),
                               const Divider(
@@ -180,6 +398,7 @@ class _ScanHomePageState extends State<ScanHomePage> {
                                   color: Colors.black,
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
+                                  fontFamily: 'MyBinnyFont',
                                 ),
                               ),
                             ],
@@ -209,17 +428,23 @@ class _ScanHomePageState extends State<ScanHomePage> {
                       height: 40,
                       child: TextField(
                         maxLines: 1,
-                        style: const TextStyle(fontSize: 16),
+                        style: const TextStyle(fontSize: 16,fontFamily: 'MyBinnyFont',),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(40),
                           ),
                           labelText: "กรอกรหัสบาร์โค้ด 13 หลัก/ชื่อสินค้า",
+                          labelStyle: const TextStyle(fontFamily: 'MyBinnyFont'),
                           suffixIcon: const Icon(
                             Icons.search,
                             color: Colors.green,
                           ),
                         ),
+                        onChanged: (value) {
+                          setState(() {
+                            _searchQuery = value.toLowerCase();
+                          });
+                        },
                       ),
                     ),
                   ),
@@ -229,72 +454,77 @@ class _ScanHomePageState extends State<ScanHomePage> {
                       itemCount: items.length,
                       itemBuilder: (context, index) {
                         final item = items[index];
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Colors.black.withOpacity(0.2),
-                                  width: 1.0,
-                                ),
-                              ),
-                            ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 10.0),
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-                                          border: Border.all(
-                                            color: Colors.black.withOpacity(0.2),
-                                            width: 1.0, // Increased width
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: SizedBox(
-                                            width: 100,
-                                            child: AspectRatio(
-                                              aspectRatio: 1 / 1,
-                                                child: Image.asset(item.image)
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 15), // Add space between the image and text
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            item.id,
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Color.fromRGBO(2, 194, 117, 1),
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                          Text(
-                                            item.name,
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                        if (item.id.toLowerCase().contains(_searchQuery) || item.name.toLowerCase().contains(_searchQuery)){
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.black.withOpacity(0.2),
+                                    width: 1.0,
                                   ),
                                 ),
-                              ],
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 10.0),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+                                            border: Border.all(
+                                              color: Colors.black.withOpacity(0.2),
+                                              width: 1.0, // Increased width
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: SizedBox(
+                                              width: 100,
+                                              height: 100,
+                                              child: item.image.isEmpty
+                                                  ? Image.file(File(item.image2!.path))
+                                                  : Image.asset(item.image),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 15), // Add space between the image and text
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              item.id,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Color.fromRGBO(2, 194, 117, 1),
+                                                fontSize: 16,
+                                                fontFamily: 'MyBinnyFont',
+                                              ),
+                                            ),
+                                            Text(
+                                              item.name,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 16,
+                                                fontFamily: 'MyBinnyFont',
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        );
+                          );
+                        }
+                        return null;
                       },
                     ),
                   ),

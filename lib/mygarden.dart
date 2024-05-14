@@ -1,3 +1,4 @@
+import 'package:binny_project_g3/homescreen.dart';
 import 'package:flutter/material.dart';
 
 class Garden extends StatefulWidget {
@@ -11,161 +12,712 @@ class _GardenState extends State<Garden> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF039BE5), Color(0xFF84FFFF)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Image.asset(
-                  'assets/binny.png',
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.bottomCenter,
+      body: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SecondPage()),
+          );
+        },
+        child: Container(
+          color: Colors.blue,
+          alignment: Alignment.bottomCenter,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              // Your positioned images here
+              Positioned(
+                bottom: 0,
                 child: Image.asset(
                   'assets/colorr.png',
-                  fit: BoxFit.contain,
+                  height: 400,
+                  width: 1110,
                 ),
               ),
-            ),
-            Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.5, // ปรับตำแหน่ง bottom ตามความต้องการ
-              left: 0,
-              right: 0,
-              child: Center(
+              Positioned(
+                bottom: 670, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 130, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/binny.png',
+                  height: 150, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 150, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 540, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/re.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 500, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
                 child: Image.asset(
                   'assets/co.png',
-                  height: MediaQuery.of(context).size.height * 0.75,
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  fit: BoxFit.contain,
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
                 ),
               ),
-            ),
-            Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.3, // ปรับตำแหน่ง bottom ตามความต้องการ
-              left: 0,
-              right: 0,
-              child: Center(
+              Positioned(
+                bottom: 470, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
                 child: Image.asset(
                   'assets/roei.png',
-                  height: MediaQuery.of(context).size.height * 1.08,
-                  width: MediaQuery.of(context).size.width * 0.2,
-                  fit: BoxFit.contain,
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
                 ),
               ),
-            ),
-            Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.65, // ปรับตำแหน่ง bottom ตามความต้องการ
-              left: MediaQuery.of(context).size.width * -0.05, // ปรับตำแหน่ง left ตามความต้องการ
-              right: MediaQuery.of(context).size.width * 0.7, // ปรับตำแหน่ง right ตามความต้องการ
-              child: Image.asset(
-                'assets/mek.png',
-                fit: BoxFit.contain,
-                ),
-              ),
-            Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.6, // ปรับตำแหน่ง bottom ตามความต้องการ
-              left: MediaQuery.of(context).size.width * 0.7     , // ปรับตำแหน่ง left ตามความต้องการ
-              right: MediaQuery.of(context).size.width * -0.08,  
-               // ปรับตำแหน่ง right ตามความต้องการ
-              child: Image.asset(
-                'assets/mekk.png',
-                fit: BoxFit.contain,
-                ),
-              ),  
-            Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.75, // ปรับตำแหน่ง bottom ตามความต้องการ
-              left: MediaQuery.of(context).size.width * 0.55     , // ปรับตำแหน่ง left ตามความต้องการ
-              right: MediaQuery.of(context).size.width * 0.15,  
-               // ปรับตำแหน่ง right ตามความต้องการ
-              child: Image.asset(
-                'assets/mekk.png',
-                fit: BoxFit.contain,
-                ),
-              ),  
-            Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.3, // ปรับตำแหน่ง bottom ตามความต้องการ
-              left: 0,
-              right: 0,
-              child: Center(
+              Positioned(
+                bottom: 240, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
                 child: Image.asset(
                   'assets/tree.png',
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  width: MediaQuery.of(context).size.width * 1,
-                  fit: BoxFit.contain,
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
                 ),
               ),
-            ),
-            Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.12, // ปรับตำแหน่ง bottom ตามความต้องการ
-              left: 0,
-              right: 0,
-              child: Center(
+              Positioned(
+                bottom: 90, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
                 child: Image.asset(
                   'assets/pum.png',
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  width: MediaQuery.of(context).size.width * 0.2,
-                  fit: BoxFit.contain,
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
                 ),
               ),
-            ),
-            Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.2, // ปรับตำแหน่ง bottom ตามความต้องการ
-              left: 0,
-              right: 0,
-              child: Center(
+              Positioned(
+                bottom: 30, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
                 child: Image.asset(
                   'assets/kod.png',
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  fit: BoxFit.contain,
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
                 ),
               ),
-            ),
-            Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.15, // ปรับตำแหน่ง bottom ตามความต้องการ
-              left: 0,
-              right: 0,
-              child: Center(
+              Positioned(
+                bottom: 0, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
                 child: Image.asset(
                   'assets/twen.png',
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  width: MediaQuery.of(context).size.width * 0.15,
-                  fit: BoxFit.contain,
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
                 ),
               ),
-            ),
-            Positioned(
-              bottom: MediaQuery.of(context).size.height * 0.08, // ปรับตำแหน่ง bottom ตามความต้องการ
-              left: 0,
-              right: 0,
-              child: Center(
+              Positioned(
+                bottom: -80, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
                 child: Image.asset(
                   'assets/le.png',
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  fit: BoxFit.contain,
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
                 ),
               ),
-            ),
-          ],
+              Positioned(
+                bottom: 400, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: -120, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mek.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 450, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 90, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mekk.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 340, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 160, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mekk.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ThirdPage()),
+          );
+        },
+        child: Container(
+          color: Colors.blue,
+          alignment: Alignment.bottomCenter,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              // Your positioned images here
+              Positioned(
+                bottom: 0,
+                child: Image.asset(
+                  'assets/colorr.png',
+                  height: 400,
+                  width: 1110,
+                ),
+              ),
+              Positioned(
+                bottom: 670, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 130, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/binny.png',
+                  height: 150, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 150, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 540, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/re.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 500, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/co.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 470, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/roei.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 240, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/treetwo.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 90, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/pum.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 30, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/kod.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 0, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/twen.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: -80, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/le.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 400, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: -120, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mek.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 450, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 90, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mekk.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 340, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 160, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mekk.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ThirdPage extends StatelessWidget {
+  const ThirdPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FourPage()),
+          );
+        },
+        child: Container(
+          color: Colors.blue,
+          alignment: Alignment.bottomCenter,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              // Your positioned images here
+              Positioned(
+                bottom: 0,
+                child: Image.asset(
+                  'assets/colorr.png',
+                  height: 400,
+                  width: 1110,
+                ),
+              ),
+              Positioned(
+                bottom: 670, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 130, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/binny.png',
+                  height: 150, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 150, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 540, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/re.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 500, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/co.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 470, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/roei.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 240, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/treethre.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 90, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/pum.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 30, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/kod.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 0, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/twen.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: -80, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/le.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 400, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: -120, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mek.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 450, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 90, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mekk.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 340, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 160, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mekk.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+class FourPage extends StatelessWidget {
+  const FourPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FivePage()),
+          );
+        },
+        child: Container(
+          color: Colors.blue,
+          alignment: Alignment.bottomCenter,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              // Your positioned images here
+              Positioned(
+                bottom: 0,
+                child: Image.asset(
+                  'assets/colorr.png',
+                  height: 400,
+                  width: 1110,
+                ),
+              ),
+              Positioned(
+                bottom: 670, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 130, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/binny.png',
+                  height: 150, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 150, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 540, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/re.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 500, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/co.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 470, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/roei.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 240, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/treefour.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 90, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/pum.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 30, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/kod.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 0, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/twen.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: -80, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/le.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 400, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: -120, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mek.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 450, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 90, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mekk.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 340, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 160, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mekk.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+class FivePage extends StatelessWidget {
+  const FivePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Homescreen()),
+          );
+        },
+        child: Container(
+          color: Colors.blue,
+          alignment: Alignment.bottomCenter,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              // Your positioned images here
+              Positioned(
+                bottom: 0,
+                child: Image.asset(
+                  'assets/colorr.png',
+                  height: 400,
+                  width: 1110,
+                ),
+              ),
+              Positioned(
+                bottom: 670, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 130, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/binny.png',
+                  height: 150, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 150, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 540, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/re.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 500, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/co.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 470, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/roei.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 240, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/treefive.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 90, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/pum.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 30, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/kod.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 0, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/twen.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: -80, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 0, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/le.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 400, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: -120, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mek.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 450, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 90, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mekk.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+              Positioned(
+                bottom: 340, // ระยะห่างระหว่างรูปภาพที่ต้องการปรับได้ตามต้องการ
+                left: 160, // ระยะห่างจากด้านซ้ายของ Container
+                child: Image.asset(
+                  'assets/mekk.png',
+                  height: 400, // ปรับขนาดรูปภาพตามต้องการ
+                  width: 400, // ปรับขนาดรูปภาพตามต้องการ
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
