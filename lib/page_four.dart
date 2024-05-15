@@ -18,17 +18,17 @@ class _PageFourState extends State<PageFour> {
   List filedata = [
     {
       'name': 'Bank Thi',
-      'pic': 'assets/images/men1.png',
+      'pic': 'assets/men1.png',
       'message': 'ส่วนตัวผมมองเป็นในด้านของความรับผิดชอบที่มีต่อสังคมมากกว่าครับเพราะว่าถ้าพวกเราไม่แยกเอง ก็คงไม่มีใครมาทำให้แล้วล่ะครับ',
     },
     {
       'name': 'Ploy Chompoo',
-      'pic': 'assets/images/girl3.png',
+      'pic': 'assets/girl3.png',
       'message': 'คนไทยมักง่ายจังเลยเนาะ',
     },
     {
       'name': 'Avocado',
-      'pic': 'assets/images/avocado.png',
+      'pic': 'assets/avocado.png',
       'message': 'ช่วยแบ่งเบาภาระเจ้าหน้าที่ มาร่วมแรงร่วมใจแยกขยะกันเท่าที่ทำได้ทำได้กันดีกว่าค่ะ',
     },
   ];
@@ -85,7 +85,7 @@ class _PageFourState extends State<PageFour> {
                 MaterialPageRoute(builder: (context) => PageOne()), // แทน YourNextPage ด้วยหน้าที่ต้องการเปลี่ยนไป
               );
             },
-            child: Image.asset('assets/images/b-left.png', width: 10, height: 30),
+            child: Image.asset('assets/b-left.png', width: 10, height: 30),
           ),
         ),
         title: const Padding(
@@ -101,7 +101,7 @@ class _PageFourState extends State<PageFour> {
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 5,right: 10),
-            child: Image.asset('assets/images/Group 23.png', width: 80, height: 80),
+            child: Image.asset('assets/Group 23.png', width: 80, height: 80),
           ),
         ],
       ),
@@ -189,7 +189,7 @@ class _PageFourState extends State<PageFour> {
                                       );
                                     },
                                     child: Image.asset(
-                                      'assets/images/Vector (1).png',
+                                      'assets/Vector (1).png',
                                       width: 30,
                                     ),
                                   ),
@@ -215,7 +215,7 @@ class _PageFourState extends State<PageFour> {
                                       Row(
                                         children: [
                                           Image.asset(
-                                            'assets/images/girl2.png',
+                                            'assets/girl2.png',
                                             width: 55,
                                             height: 55,
                                           ),
@@ -251,7 +251,7 @@ class _PageFourState extends State<PageFour> {
                                                 Column(
                                                   children: [
                                                     Image.asset(
-                                                      'assets/images/Vectore.png',
+                                                      'assets/Vectore.png',
                                                       width: 20,
                                                       height: 20,
                                                     ),
@@ -276,11 +276,11 @@ class _PageFourState extends State<PageFour> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Image.asset('assets/images/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
+                                    Image.asset('assets/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
                                     SizedBox(width: 1),
                                     Text('23'),
                                     SizedBox(width: 2),
-                                    Image.asset('assets/images/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
+                                    Image.asset('assets/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
                                     SizedBox(width: 1),
                                     Text('3'),
                                     SizedBox(width: 4),
@@ -290,7 +290,7 @@ class _PageFourState extends State<PageFour> {
                                 Column(
                                   children: [
                                     Image.asset(
-                                        'assets/images/Line 19.png'
+                                        'assets/Line 19.png'
                                     ),
                                   ],
                                 ),
@@ -314,7 +314,7 @@ class _PageFourState extends State<PageFour> {
                 Expanded(
                   child: CommentBox(
                     userImage: CommentBox.commentImageParser(
-                        imageURLorPath: "assets/images/Ellipse 78.png"),
+                        imageURLorPath: "assets/Ellipse 78.png"),
                     labelText: 'เขียนความคิดเห็น...',
                     errorText: 'ความคิดเห็นต้องไม่ว่างเปล่า',
                     withBorder: false,
@@ -327,7 +327,7 @@ class _PageFourState extends State<PageFour> {
                           var value = {
                             'name': 'Matalada',
                             'pic':
-                            'assets/images/Ellipse 78.png',
+                            'assets/Ellipse 78.png',
                             'message': commentController.text,
                           };
                           filedata.insert(0, value);

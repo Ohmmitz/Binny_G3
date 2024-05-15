@@ -147,7 +147,7 @@ class _MyAppState extends State<product2> {
                       alignment: Alignment.center,
                       child: selectedBinImage.isNotEmpty
                           ? Image.asset(
-                              'asstes/$selectedBinImage.png',
+                              'assets/$selectedBinImage.png',
                               fit: BoxFit.cover,
                             )
                           : Column(
@@ -155,7 +155,7 @@ class _MyAppState extends State<product2> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Image.asset(
-                                  'asstes/Vector.png',
+                                  'assets/Vector.png',
                                   width: 40,
                                   height: 40,
                                 ),
@@ -198,7 +198,7 @@ class _MyAppState extends State<product2> {
                                   fit: BoxFit.cover,
                                 )
                               : Image.asset(
-                                  'asstes/upload.png',
+                                  'assets/upload.png',
                                   width: 103,
                                   height: 96,
                                 ),
@@ -208,7 +208,7 @@ class _MyAppState extends State<product2> {
                         width: 0,
                       ),
                       Image.asset(
-                        'asstes/next.png',
+                        'assets/next.png',
                         width: 40,
                         height: 40,
                       ),
@@ -218,8 +218,8 @@ class _MyAppState extends State<product2> {
                         },
                         child: Image.asset(
                           selectedWasteTypeImage.isNotEmpty
-                              ? 'asstes/$selectedWasteTypeImage.png'
-                              : 'asstes/select.png',
+                              ? 'assets/$selectedWasteTypeImage.png'
+                              : 'assets/select.png',
                           width: 103,
                           height: 96,
                         ),
@@ -230,7 +230,7 @@ class _MyAppState extends State<product2> {
                   Row(
                     children: [
                       Image.asset(
-                        'asstes/edittext.png',
+                        'assets/edittext.png',
                         width: 25,
                         height: 25,
                       ),
@@ -270,7 +270,7 @@ class _MyAppState extends State<product2> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.asset(
-                'asstes/selectcolect.png',
+                'assets/selectcolect.png',
                 width: 257, // Adjust width as needed
                 height: 167, // Adjust height as needed
                 fit: BoxFit.cover,
@@ -366,12 +366,12 @@ class _MyAppState extends State<product2> {
                         },
                         child: Image.asset(
                           index == 0
-                              ? 'asstes/bin1.png'
+                              ? 'assets/bin1.png'
                               : index == 1
-                                  ? 'asstes/bluebin.png'
+                                  ? 'assets/bluebin.png'
                                   : index == 2
-                                      ? 'asstes/bin3.png'
-                                      : 'asstes/bin4.png',
+                                      ? 'assets/bin3.png'
+                                      : 'assets/bin4.png',
                           width: 104,
                           height: 96,
                         ),
@@ -419,7 +419,7 @@ class _MyAppState extends State<product2> {
                         fit: BoxFit.cover,
                       )
                     : Image.asset(
-                        'asstes/upload.png',
+                        'assets/upload.png',
                         width: 103,
                         height: 96,
                       ),
@@ -429,7 +429,7 @@ class _MyAppState extends State<product2> {
               width: 0,
             ),
             Image.asset(
-              'asstes/next.png',
+              'assets/next.png',
               width: 40,
               height: 40,
             ),
@@ -439,8 +439,8 @@ class _MyAppState extends State<product2> {
               },
               child: Image.asset(
                 selectedWasteTypeImage.isNotEmpty
-                    ? 'asstes/$selectedWasteTypeImage.png'
-                    : 'asstes/select.png',
+                    ? 'assets/$selectedWasteTypeImage.png'
+                    : 'assets/select.png',
                 width: 103,
                 height: 96,
               ),
@@ -451,7 +451,7 @@ class _MyAppState extends State<product2> {
         Row(
           children: [
             Image.asset(
-              'asstes/edittext.png',
+              'assets/edittext.png',
               width: 25,
               height: 25,
             ),
@@ -482,7 +482,7 @@ class _MyAppState extends State<product2> {
               child: Row(
                 children: [
                   Image.asset(
-                    'asstes/twocom.png',
+                    'assets/twocom.png',
                     width: 25,
                     height: 25,
                   ),

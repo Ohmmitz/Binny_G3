@@ -19,7 +19,7 @@ class _PageThreeState extends State<PageThree> {
   late final String message;
 
   List<String> imageUrls = [
-    'assets/images/1women.png',
+    'assets/1women.png',
     // เพิ่มรูปภาพอื่น ๆ ตามต้องการ
   ];
   List<String> names = [
@@ -53,15 +53,15 @@ class _PageThreeState extends State<PageThree> {
                         MaterialPageRoute(builder: (context) => PageOne()), // เปลี่ยนเป็นหน้าที่ต้องการไป
                       );
                     },
-                    child: Image.asset('assets/images/b-left.png'),
+                    child: Image.asset('assets/b-left.png'),
                   ),
                   const SizedBox(width: 1),
-                  Image.asset('assets/images/b1.png'),
+                  Image.asset('assets/b1.png'),
                   const SizedBox(width: 1),
-                  Image.asset('assets/images/b2.png'),
+                  Image.asset('assets/b2.png'),
                   const SizedBox(width: 190),
                   Spacer(),
-                  Image.asset('assets/images/Group 23.png'),
+                  Image.asset('assets/Group 23.png'),
                   const SizedBox(width: 15),
                 ],
               ),
@@ -73,7 +73,7 @@ class _PageThreeState extends State<PageThree> {
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     color: Colors.green,
-                    fontFamily: 'YourFontFamily',
+                    fontFamily: 'MyBinnyFont',
                   ),
                 ),
               ),
@@ -83,7 +83,7 @@ class _PageThreeState extends State<PageThree> {
                   '#ประเด็นคำถามยอดฮิตวันนี้',
                   style: TextStyle(
                     fontSize: 14,
-                    fontFamily: 'YourFontFamily',
+                    fontFamily: 'MyBinnyFont',
                   ),
                 ),
               ),
@@ -164,7 +164,7 @@ class _PageThreeState extends State<PageThree> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Image.asset('assets/images/Vector (1).png'),
+                                    Image.asset('assets/Vector (1).png'),
                                   ],
                                 ),
                               ),

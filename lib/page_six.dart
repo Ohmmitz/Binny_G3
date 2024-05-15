@@ -18,22 +18,22 @@ class _PageSixState extends State<PageSix> {
   List filedata = [
     {
       'name': 'Ammy G.',
-      'pic': 'assets/images/girl1.png',
+      'pic': 'assets/girl1.png',
       'message': 'AIS Shop ตามห้างรับอุปกรณ์อิเล็กทรอนิกส์ค่ะ ส่วนถ่านไฟฉายเราส่งที่สยามพารากอน ชั้น 1 (ใกล้บันไดเลื่อนหน้าธนาคารกรุงเทพค่ะ)',
     },
     {
       'name': 'Siri rattana',
-      'pic': 'assets/images/monk1.png',
+      'pic': 'assets/monk1.png',
       'message': 'ทางไปรษณีย์ไทยมีโครงการรับทิ้ง E-Waste ทิ้งผ่านบุรุษไปรษณีย์ก็ได้ครับฟรีไม่มีค่ายใช้จ่าย',
     },
     {
       'name': 'Boy eiei',
-      'pic': 'assets/images/boy.png',
+      'pic': 'assets/boy.png',
       'message': 'เคยเห็นในเฟสเขารับบริจาคของสมาคมพิการครับ สามารถตามได้ที่เพจ ECOLIFE ได้เลยครับ',
     },
     {
       'name': 'Bank Thi',
-      'pic': 'assets/images/men1.png',
+      'pic': 'assets/men1.png',
       'message': 'ผมรับบริจาค ติดต่อมาได้ครับ',
     },
   ];
@@ -90,7 +90,7 @@ class _PageSixState extends State<PageSix> {
                 MaterialPageRoute(builder: (context) => PageOne()), // แทน YourNextPage ด้วยหน้าที่ต้องการเปลี่ยนไป
               );
             },
-            child: Image.asset('assets/images/b-left.png', width: 10, height: 30),
+            child: Image.asset('assets/b-left.png', width: 10, height: 30),
           ),
         ),
         title: const Padding(
@@ -106,7 +106,7 @@ class _PageSixState extends State<PageSix> {
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 5,right: 10),
-            child: Image.asset('assets/images/Group 23.png', width: 80, height: 80),
+            child: Image.asset('assets/Group 23.png', width: 80, height: 80),
           ),
         ],
       ),
@@ -194,7 +194,7 @@ class _PageSixState extends State<PageSix> {
                                       );
                                     },
                                     child: Image.asset(
-                                      'assets/images/Vector (1).png',
+                                      'assets/Vector (1).png',
                                       width: 30,
                                     ),
                                   ),
@@ -220,7 +220,7 @@ class _PageSixState extends State<PageSix> {
                                       Row(
                                         children: [
                                           Image.asset(
-                                            'assets/images/girl3.png',
+                                            'assets/girl3.png',
                                             width: 55,
                                             height: 55,
                                           ),
@@ -256,7 +256,7 @@ class _PageSixState extends State<PageSix> {
                                                 Column(
                                                   children: [
                                                     Image.asset(
-                                                      'assets/images/Vectore.png',
+                                                      'assets/Vectore.png',
                                                       width: 20,
                                                       height: 20,
                                                     ),
@@ -281,11 +281,11 @@ class _PageSixState extends State<PageSix> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Image.asset('assets/images/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
+                                    Image.asset('assets/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
                                     SizedBox(width: 1),
                                     Text('22'),
                                     SizedBox(width: 2),
-                                    Image.asset('assets/images/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
+                                    Image.asset('assets/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
                                     SizedBox(width: 1),
                                     Text('4'),
                                     SizedBox(width: 4),
@@ -295,7 +295,7 @@ class _PageSixState extends State<PageSix> {
                                 Column(
                                   children: [
                                     Image.asset(
-                                        'assets/images/Line 19.png'
+                                        'assets/Line 19.png'
                                     ),
                                   ],
                                 ),
@@ -319,7 +319,7 @@ class _PageSixState extends State<PageSix> {
                 Expanded(
                   child: CommentBox(
                     userImage: CommentBox.commentImageParser(
-                        imageURLorPath: "assets/images/Ellipse 78.png"),
+                        imageURLorPath: "assets/Ellipse 78.png"),
                     labelText: 'เขียนความคิดเห็น...',
                     errorText: 'ความคิดเห็นต้องไม่ว่างเปล่า',
                     withBorder: false,
@@ -332,7 +332,7 @@ class _PageSixState extends State<PageSix> {
                           var value = {
                             'name': 'Matalada',
                             'pic':
-                            'assets/images/Ellipse 78.png',
+                            'assets/Ellipse 78.png',
                             'message': commentController.text,
                           };
                           filedata.insert(0, value);

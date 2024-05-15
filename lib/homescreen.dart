@@ -1,6 +1,7 @@
 import 'package:binny_project_g3/Howto1.dart';
 import 'package:binny_project_g3/Reward.dart';
 import 'package:binny_project_g3/ShopDetailPage1.dart';
+import 'package:binny_project_g3/appbinny.dart';
 import 'package:binny_project_g3/comunity.dart';
 import 'package:binny_project_g3/homescreen.dart';
 import 'package:binny_project_g3/mapmain.dart';
@@ -272,7 +273,7 @@ Widget build(BuildContext context) {
                 // Navigate to Soldtash here
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Soldtash()),
+                  MaterialPageRoute(builder: (context) => Soldsold()),
                 );
               },
               child: Column(

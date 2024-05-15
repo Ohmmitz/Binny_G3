@@ -18,7 +18,7 @@ class _PageSevenState extends State<PageSeven> {
   List filedata = [
     {
       'name': 'Ammy G.',
-      'pic': 'assets/images/girl1.png',
+      'pic': 'assets/girl1.png',
       'message': 'บ้านเราพยายามแยกเศษขยะกับน้ำแกงแล้วทิ้งค่ะตัวน้ำแกงก็เทลง ซิงค์แต่ขยะเศษอาหารจะทิ้งลงถังที่ย่อยสลายได้ค่ะ ไม่แน่ใจว่ามันถูกไหมแต่ใช้วิธีนี้มาตลอด',
     },
   ];
@@ -75,7 +75,7 @@ class _PageSevenState extends State<PageSeven> {
                 MaterialPageRoute(builder: (context) => PageOne()), // แทน YourNextPage ด้วยหน้าที่ต้องการเปลี่ยนไป
               );
             },
-            child: Image.asset('assets/images/b-left.png', width: 10, height: 30),
+            child: Image.asset('assets/b-left.png', width: 10, height: 30),
           ),
         ),
         title: const Padding(
@@ -91,7 +91,7 @@ class _PageSevenState extends State<PageSeven> {
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 5,right: 10),
-            child: Image.asset('assets/images/Group 23.png', width: 80, height: 80),
+            child: Image.asset('assets/Group 23.png', width: 80, height: 80),
           ),
         ],
       ),
@@ -179,7 +179,7 @@ class _PageSevenState extends State<PageSeven> {
                                       );
                                     },
                                     child: Image.asset(
-                                      'assets/images/Vector (1).png',
+                                      'assets/Vector (1).png',
                                       width: 30,
                                     ),
                                   ),
@@ -205,7 +205,7 @@ class _PageSevenState extends State<PageSeven> {
                                       Row(
                                         children: [
                                           Image.asset(
-                                            'assets/images/Ellipse 78 (1).png',
+                                            'assets/Ellipse 78(1).png',
                                             width: 55,
                                             height: 55,
                                           ),
@@ -233,7 +233,7 @@ class _PageSevenState extends State<PageSeven> {
                                         ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 150),
+                                        padding: const EdgeInsets.only(left: 140),
                                         child: Row(
                                           children: [
                                             Row(
@@ -241,7 +241,7 @@ class _PageSevenState extends State<PageSeven> {
                                                 Column(
                                                   children: [
                                                     Image.asset(
-                                                      'assets/images/Vectore.png',
+                                                      'assets/Vector.png',
                                                       width: 20,
                                                       height: 20,
                                                     ),
@@ -266,11 +266,11 @@ class _PageSevenState extends State<PageSeven> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Image.asset('assets/images/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
+                                    Image.asset('assets/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
                                     SizedBox(width: 1),
                                     Text('10'),
                                     SizedBox(width: 2),
-                                    Image.asset('assets/images/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
+                                    Image.asset('assets/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
                                     SizedBox(width: 1),
                                     Text('1'),
                                     SizedBox(width: 4),
@@ -280,7 +280,7 @@ class _PageSevenState extends State<PageSeven> {
                                 Column(
                                   children: [
                                     Image.asset(
-                                        'assets/images/Line 19.png'
+                                        'assets/Line 19.png'
                                     ),
                                   ],
                                 ),
@@ -304,7 +304,7 @@ class _PageSevenState extends State<PageSeven> {
                 Expanded(
                   child: CommentBox(
                     userImage: CommentBox.commentImageParser(
-                        imageURLorPath: "assets/images/Ellipse 78.png"),
+                        imageURLorPath: "assets/Ellipse 78.png"),
                     labelText: 'เขียนความคิดเห็น...',
                     errorText: 'ความคิดเห็นต้องไม่ว่างเปล่า',
                     withBorder: false,
@@ -317,7 +317,7 @@ class _PageSevenState extends State<PageSeven> {
                           var value = {
                             'name': 'Matalada',
                             'pic':
-                            'assets/images/Ellipse 78.png',
+                            'assets/Ellipse 78.png',
                             'message': commentController.text,
                           };
                           filedata.insert(0, value);

@@ -17,17 +17,17 @@ class _PageTwoState extends State<PageTwo> {
   List filedata = [
     {
       'name': 'Kungjuju ja',
-      'pic': 'assets/images/girl1.png',
+      'pic': 'assets/girl1.png',
       'message': 'ประเภทถุงบริจาคที่ GREEN ROAD ค่ะ ส่วนกระป๋องขายซาเล้งได้ค่ะ',
     },
     {
       'name': 'Siri rattana',
-      'pic': 'assets/images/monk1.png',
+      'pic': 'assets/monk1.png',
       'message': 'ทิ้งไว้ให้แห้งไม่ต้องล้างส่ง N15 #ทีมทำลายให้หายไปค่ะ',
     },
     {
       'name': 'Siri rattana',
-      'pic': 'assets/images/monk1.png',
+      'pic': 'assets/monk1.png',
       'message': 'กระป๋อง ถ้าไม่ขายก็เก็บรวมๆใส่ถุงวางข้างถังขยะพี่ซาเล้งมาช่วยเก็บไปขายค่ะ',
     },
   ];
@@ -191,7 +191,7 @@ class _PageTwoState extends State<PageTwo> {
                                       );
                                     },
                                     child: Image.asset(
-                                      'assets/images/Vector (1).png',
+                                      'assets/Vector (1).png',
                                       width: 30,
                                     ),
                                   ),
@@ -217,7 +217,7 @@ class _PageTwoState extends State<PageTwo> {
                                       Row(
                                         children: [
                                           Image.asset(
-                                            'assets/images/Ellipse 78 (1).png',
+                                            'assets/Ellipse 78(1).png',
                                             width: 55,
                                             height: 55,
                                           ),
@@ -253,7 +253,7 @@ class _PageTwoState extends State<PageTwo> {
                                                 Column(
                                                   children: [
                                                     Image.asset(
-                                                      'assets/images/Vectore.png',
+                                                      'assets/Vectore.png',
                                                       width: 20,
                                                       height: 20,
                                                     ),
@@ -278,11 +278,11 @@ class _PageTwoState extends State<PageTwo> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Image.asset('assets/images/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
+                                    Image.asset('assets/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
                                     SizedBox(width: 1),
                                     Text('10'),
                                     SizedBox(width: 2),
-                                    Image.asset('assets/images/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
+                                    Image.asset('assets/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
                                     SizedBox(width: 1),
                                     Text('2'),
                                     SizedBox(width: 4),
@@ -292,7 +292,7 @@ class _PageTwoState extends State<PageTwo> {
                                 Column(
                                   children: [
                                     Image.asset(
-                                        'assets/images/Line 19.png'
+                                        'assets/Line 19.png'
                                     ),
                                   ],
                                 ),
@@ -316,7 +316,7 @@ class _PageTwoState extends State<PageTwo> {
                 Expanded(
                   child: CommentBox(
                     userImage: CommentBox.commentImageParser(
-                        imageURLorPath: "assets/images/Ellipse 78.png"),
+                        imageURLorPath: "assets/Ellipse 78.png"),
                     labelText: 'เขียนความคิดเห็น...',
                     errorText: 'ความคิดเห็นต้องไม่ว่างเปล่า',
                     withBorder: false,
@@ -329,7 +329,7 @@ class _PageTwoState extends State<PageTwo> {
                           var value = {
                             'name': 'Matalada',
                             'pic':
-                            'assets/images/Ellipse 78.png',
+                            'assets/Ellipse 78.png',
                             'message': commentController.text,
                           };
                           filedata.insert(0, value);

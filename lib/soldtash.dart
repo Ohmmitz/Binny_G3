@@ -1,8 +1,7 @@
-import 'package:binny_project_g3/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:app_utils/app_utils.dart';
+import 'package:binny_project_g3/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'SearchPage.dart';
@@ -10,114 +9,16 @@ import 'SearchPage.dart';
 class Soldtash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return
-      Container(
-        decoration: BoxDecoration(
-          color: Color(0xFFF6F9FD),
-        ),
-        child: Container(
-          padding: EdgeInsets.fromLTRB(0, 63, 0, 0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.fromLTRB(14, 0, 13, 25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 120,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                            child: Container(
-                              child: IconButton(
-                                icon: Icon(Icons.arrow_back),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => Homescreen()),
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 9, 0, 9),
-                            width: 71,
-                            height: 23,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage(
-                                    'assets/binnyy.png',
-                                  ),
-                                ),
-                              ),
-                              child: Container(
-                                width: 71,
-                                height: 23,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                      child: SizedBox(
-                        width: 63,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                      'assets/favorites.png',
-                                    ),
-                                  ),
-                                ),
-                                child: Container(
-                                  width: 30,
-                                  height: 31,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0, 3.5, 0, 3.5),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                      'assets/search.png',
-                                    ),
-                                  ),
-                                ),
-                                child: Container(
-                                  width: 25,
-                                  height: 24,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Color(0xFFF6F9FD),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 63, 0, 0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
               Container(
                 margin: EdgeInsets.fromLTRB(25, 0, 0, 19),
                 child: SizedBox(
@@ -129,6 +30,7 @@ class Soldtash extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
+                          margin: EdgeInsets.only(right: 10), // ปรับระยะห่างด้านขวาของภาพแต่ละภาพ
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             image: DecorationImage(
@@ -223,6 +125,7 @@ class Soldtash extends StatelessWidget {
                         ),
 
                         Container(
+                          margin: EdgeInsets.only(right: 10), // ปรับระยะห่างด้านขวาของภาพแต่ละภาพ
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             image: DecorationImage(
@@ -720,7 +623,7 @@ class Soldtash extends StatelessWidget {
                                                 color: Color(0xFFFFFFFF),
                                                 image: DecorationImage(
                                                   image: AssetImage(
-                                                    'assets/images/rectangle_606.png',
+                                                    'assets/rectangle_606.png',
                                                   ),
                                                 ),
                                               ),

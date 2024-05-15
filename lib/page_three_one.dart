@@ -44,15 +44,15 @@ class _PageThreeOneState extends State<PageThreeOne> {
                           MaterialPageRoute(builder: (context) => PageOne()), // เปลี่ยนเป็นหน้าที่ต้องการไป
                         );
                       },
-                      child: Image.asset('assets/images/b-left.png'),
+                      child: Image.asset('assets/b-left.png'),
                     ),
                     const SizedBox(width: 1),
-                    Image.asset('assets/images/b1.png'),
+                    Image.asset('assets/b1.png'),
                     const SizedBox(width: 1),
-                    Image.asset('assets/images/b2.png'),
+                    Image.asset('assets/b2.png'),
                     const SizedBox(width: 190),
                     Spacer(),
-                    Image.asset('assets/images/Group 23.png'),
+                    Image.asset('assets/Group 23.png'),
                     const SizedBox(width: 15),
                   ],
                 ),
@@ -160,7 +160,7 @@ class _PageThreeOneState extends State<PageThreeOne> {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        Image.asset('assets/images/Vector (1).png'),
+                                        Image.asset('assets/Vector (1).png'),
                                       ],
                                     ),
                                   ),
@@ -224,7 +224,7 @@ class _PageThreeOneState extends State<PageThreeOne> {
                                             Padding(
                                               padding: const EdgeInsets.only(left: 150),
                                               child: Image.asset(
-                                                'assets/images/Vectore.png',
+                                                'assets/Vectore.png',
                                                 width: 20, // กำหนดความกว้างของรูปภาพ
                                                 height: 20, // กำหนดความสูงของรูปภาพ
                                               ),

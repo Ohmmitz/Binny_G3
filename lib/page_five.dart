@@ -18,12 +18,12 @@ class _PageFiveState extends State<PageFive> {
   List filedata = [
     {
       'name': 'Veeraya',
-      'pic': 'assets/images/girl2.png',
+      'pic': 'assets/girl2.png',
       'message': 'ทางนี้ตากให้แห้งค่ะแบบไม่ได้เอาด้านในออกค่ะ แล้วส่ง n15 ค่ะ',
     },
     {
       'name': 'Bank thi',
-      'pic': 'assets/images/men1.png',
+      'pic': 'assets/men1.png',
       'message': 'มาหาคำตอบด้วยครับ อยากรู้เหมือนกัน',
     },
   ];
@@ -80,7 +80,7 @@ class _PageFiveState extends State<PageFive> {
                 MaterialPageRoute(builder: (context) => PageOne()), // แทน YourNextPage ด้วยหน้าที่ต้องการเปลี่ยนไป
               );
             },
-            child: Image.asset('assets/images/b-left.png', width: 10, height: 30),
+            child: Image.asset('assets/b-left.png', width: 10, height: 30),
           ),
         ),
         title: const Padding(
@@ -96,7 +96,7 @@ class _PageFiveState extends State<PageFive> {
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 5,right: 10),
-            child: Image.asset('assets/images/Group 23.png', width: 80, height: 80),
+            child: Image.asset('assets/Group 23.png', width: 80, height: 80),
           ),
         ],
       ),
@@ -184,7 +184,7 @@ class _PageFiveState extends State<PageFive> {
                                       );
                                     },
                                     child: Image.asset(
-                                      'assets/images/Vector (1).png',
+                                      'assets/Vector (1).png',
                                       width: 30,
                                     ),
                                   ),
@@ -210,7 +210,7 @@ class _PageFiveState extends State<PageFive> {
                                       Row(
                                         children: [
                                           Image.asset(
-                                            'assets/images/girl2.png',
+                                            'assets/girl2.png',
                                             width: 55,
                                             height: 55,
                                           ),
@@ -246,7 +246,7 @@ class _PageFiveState extends State<PageFive> {
                                                 Column(
                                                   children: [
                                                     Image.asset(
-                                                      'assets/images/Vectore.png',
+                                                      'assets/Vectore.png',
                                                       width: 20,
                                                       height: 20,
                                                     ),
@@ -271,11 +271,11 @@ class _PageFiveState extends State<PageFive> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Image.asset('assets/images/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
+                                    Image.asset('assets/Vector.png', width: 35), // กำหนดขนาดไอคอนเป็น 20
                                     SizedBox(width: 1),
                                     Text('15'),
                                     SizedBox(width: 2),
-                                    Image.asset('assets/images/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
+                                    Image.asset('assets/chat.png', width: 30), // กำหนดขนาดรูปภาพเป็น 30
                                     SizedBox(width: 1),
                                     Text('2'),
                                     SizedBox(width: 4),
@@ -285,7 +285,7 @@ class _PageFiveState extends State<PageFive> {
                                 Column(
                                   children: [
                                     Image.asset(
-                                        'assets/images/Line 19.png'
+                                        'assets/Line 19.png'
                                     ),
                                   ],
                                 ),
@@ -309,7 +309,7 @@ class _PageFiveState extends State<PageFive> {
                 Expanded(
                   child: CommentBox(
                     userImage: CommentBox.commentImageParser(
-                        imageURLorPath: "assets/images/Ellipse 78.png"),
+                        imageURLorPath: "assets/Ellipse 78.png"),
                     labelText: 'เขียนความคิดเห็น...',
                     errorText: 'ความคิดเห็นต้องไม่ว่างเปล่า',
                     withBorder: false,
@@ -322,7 +322,7 @@ class _PageFiveState extends State<PageFive> {
                           var value = {
                             'name': 'Matalada',
                             'pic':
-                            'assets/images/Ellipse 78.png',
+                            'assets/Ellipse 78.png',
                             'message': commentController.text,
                           };
                           filedata.insert(0, value);

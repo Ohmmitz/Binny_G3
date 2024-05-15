@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:binny_project_g3/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:binny_project_g3/product1.dart';
 import 'package:binny_project_g3/product2.dart';
@@ -63,21 +64,14 @@ class _HomepointState extends State<Homepoint> {
       title: 'Flutter Demo',
       home: Scaffold(
         appBar: AppBar(
-          leading: Padding(
-            padding: EdgeInsets.only(left: 20.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => product1()),
-                );
-              },
-              child: Image.asset(
-                'assets/backk.png',
-                width: 40,
-                height: 98,
-              ),
-            ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Homescreen()),
+              );
+            },
           ),
           actions: [
             Padding(
@@ -272,7 +266,7 @@ class _HomepointState extends State<Homepoint> {
                               SizedBox(width: 118),
                               Text(
                                 '${person['score']}',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 17),
                               ),
                             ],
                           ),
